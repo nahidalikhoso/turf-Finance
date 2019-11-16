@@ -1,0 +1,44 @@
+﻿.Label {
+    padding-top: 10% !important;
+}
+
+.input-icon {
+    position: absolute;
+    right: 3px;
+    top: calc(50% - 0.5em); /* Keep icon in center of input, regardless of the input height */
+}
+
+input {
+    padding-left: 17px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.PaddingClass {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.formControl {
+    background-color: #fffcf5;
+    border: medium none;
+    border-radius: 4px;
+    color: #66615b;
+    font-size: 14px;
+    transition: background-color 0.3s ease 0s;
+    padding: 7px 18px;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.labelWidth{
+    width:13%;
+}
+.BalanceTable{
+       width: 75%;
+    /* padding-left: 0px; */
+    margin-left: 0;
+    margin-right: 0;
+}
