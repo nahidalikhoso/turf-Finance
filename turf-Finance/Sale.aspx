@@ -1,41 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Expense.aspx.cs" Inherits="turf_Finance.Expense" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Sale.aspx.cs" Inherits="turf_Finance.Sale" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
-    <script src="scripts/Custom/Expense.js"></script>
+    <script src="scripts/Custom/Sale.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div id="div_ExpList" class="wrapper">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#ExpList" style="font-weight: bold;">Expense List</a></li>
-            <li><a data-toggle="tab" href="#vendor" style="font-weight: bold;">Vendor</a></li>
+      <div id="ReceiveList" class="wrapper">
+        <ul id="my_tab"class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#RecList" style="font-weight:bold; ">Receive List</a></li>
+            <li><a data-toggle="tab" href="#customer" style="font-weight:bold;">Customer List</a></li>
         </ul>
-        <div class="tab-content">
-            <div id="ExpList" class="tab-pane fade in active">
-                <div class="content">
+        <div class="tab-content" id="tabs">
+            <div id="RecList" class="tab-pane fade in active">
+                <div class="content" id="ReceiveListTab">
                     <div class="container-fluid">
-                        <div class="row" style="margin-top: 23px">
+                        <div class="row" style="margin-top:23px">
                             <div class="col-md-12">
-                                <div class="col-md-8">
-                                    <div class="content">
-                                        <div class="form-group">
-                                            <div class="btn-group" role="group">
-                                                <button id="btnAll" type="button" class="btn btn-primary btn-wd " onclick="AllVoucher();">All</button>
-                                                <button id="btnPaid" type="button" class="btn btn-primary btn-wd  ">Paid</button>
-                                                <button id="btnUnPaid" type="button" class="btn btn-primary btn-wd " onclick="AllUnPaidVoucher();">Unpaid</button>
-                                                <button id="btnPartialPaid" type="button" class="btn btn-primary btn-wd ">Partial Paid</button>
-                                            </div>
+                                   <div class="col-md-8">
+                                <div class="content">
+                                    <div class="form-group">
+                                          <div class="btn-group" role="group">
+                                        <button id="btnAll" type="button" class="btn btn-primary btn-wd " onclick="AllVoucher();">All</button>
+                                        <button id="btnPaid" type="button" class="btn btn-primary btn-wd ">Receive</button>
+                                        <button id="btnUnPaid" type="button" class="btn btn-primary btn-wd " onclick="AllNotReceivedVoucher();">NotReceived</button>
+                                        <button id="btnPartialPaid" type="button" class="btn btn-primary btn-wd ">Partial Received</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                    <button type="button" id="Modal" class="btn btn-info btn-fill" onclick="openExpenseVoucher()">Add New Invoice</button>
-                                </div>
                             </div>
+                             
+                           <div class="col-md-4 text-right">
+                                    <button type="button" id="Modal" class="btn btn-info btn-fill" onclick="openSaleVoucher()">Add New Invoice</button>
+                                </div>
+                                   </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-8">
+                                  <div class="col-md-8">
                                     <div class="col-md-2 labelWidth PaddingClass">
                                         <label class="Label">Start Date:</label>
                                     </div>
@@ -57,7 +58,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group text-right">
-                                        <button type="button" id="btnPay" class="btn btn-success btn-fill" onclick="PaymentPage();">Pay</button>
+                                        <button type="button" id="btnReceive" class="btn btn-success btn-fill" onclick="ReceivePage();">Receive</button>
                                         <button type="button" class="btn btn-success btn-fill">Export</button>
                                         <button type="button" class="btn btn-success btn-fill">Print</button>
                                     </div>
@@ -67,12 +68,12 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="div_ExpenseVoucherList" class="row">
+                        <div id="div_DemoGrid" class="row">
                             <div class="col-md-12">
-                                <table id="tblExpenseVoucherList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
+                                <table id="demoGrid" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
                                     <thead>
-                                        <tr style="border-top: hidden;">
-                                            <th>Vendor</th>
+                                        <tr style="border-top:hidden;">
+                                            <th>Customer</th>
                                             <th>Invoice No</th>
                                             <th>Invoice Date</th>
                                             <th>Voucher No</th>
@@ -82,6 +83,7 @@
                                             <th>Memo</th>
                                             <th>Class</th>
                                             <th>Project</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,10 +94,11 @@
                                             <td>Voucher No 1</td>
                                             <td>31 Aug 2019</td>
                                             <td>30,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>Electricity Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Computers</td>
                                             <td></td>
                                             <td></td>
+
                                         </tr>
                                         <tr>
                                             <td>Shakir</td>
@@ -104,8 +107,8 @@
                                             <td>Voucher No 2</td>
                                             <td>31 Aug 2019</td>
                                             <td>20,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>Internet Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Printers</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -113,11 +116,11 @@
                                             <td>Adnan</td>
                                             <td>Invoice No 3</td>
                                             <td>31 Aug 2019</td>
-                                            <td>Payment Voucher No 3</td>
+                                            <td>Receive Voucher No 3</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Paid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Received</td>
+                                            <td>Sale Men T-Shirts</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -128,8 +131,8 @@
                                             <td>Voucher No 4</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Recived</td>
+                                            <td>Sale Men T-Shirts</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -140,8 +143,8 @@
                                             <td>Voucher No 5</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Mobiles</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -152,8 +155,8 @@
                                             <td>Voucher No 6</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Women Cloths</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -161,14 +164,13 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="div_UnpaidVoucher" class="row">
+                        <div id="div_NotReceivedVoucher" class="row">
                             <div class="col-md-12">
-                                <table id="demoGridForUnpaid" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
+                                <table id="demoGridForNotReceived" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
                                     <thead>
-                                        <tr style="border-top: hidden;">
-                                            <th>
-                                                <input type="checkbox" /></th>
-                                            <th>Vendor</th>
+                                        <tr style="border-top:hidden;">
+                                            <th>All <input type="checkbox" /></th>
+                                            <th>Customer</th>
                                             <th>Invoice No</th>
                                             <th>Invoice Date</th>
                                             <th>Voucher No</th>
@@ -183,87 +185,81 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Saad</td>
                                             <td>Invoice No 1</td>
                                             <td>31 Aug 2019</td>
                                             <td>Voucher No 1</td>
                                             <td>31 Aug 2019</td>
                                             <td>30,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>Electricity Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Computers</td>
                                             <td></td>
                                             <td></td>
 
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Shakir</td>
                                             <td>Invoice No 2</td>
                                             <td>31 Aug 2019</td>
                                             <td>Voucher No 2</td>
                                             <td>31 Aug 2019</td>
                                             <td>20,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>Internet Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Printers</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 3</td>
                                             <td>31 Aug 2019</td>
-                                            <td>Voucher No 3</td>
+                                            <td>Receive Voucher No 3</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Received</td>
+                                            <td>Sale Men T-Shirts</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 4</td>
                                             <td>31 Aug 2019</td>
                                             <td>Voucher No 4</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Recived</td>
+                                            <td>Sale Men T-Shirts</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 5</td>
                                             <td>31 Aug 2019</td>
                                             <td>Voucher No 5</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Mobiles</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
+                                            <td><input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 6</td>
                                             <td>31 Aug 2019</td>
                                             <td>Voucher No 6</td>
                                             <td>31 Aug 2019</td>
                                             <td>25,000.00</td>
-                                            <td>Unpaid</td>
-                                            <td>PTCL Bill Month of July 2019</td>
+                                            <td>Not Received</td>
+                                            <td>Sale Women Cloths</td>
                                             <td></td>
                                             <td></td>
                                         </tr>
@@ -274,43 +270,46 @@
                     </div>
                 </div>
             </div>
-            <div id="vendor" class="tab-pane fade">
-                <div class="content" id="VendorList">
+            <div id="customer" class="tab-pane fade">
+                <div class="content" id="customerList">
                     <div class="container-fluid">
-                        <div class="row" style="margin-top: 23px;">
-                            <div class="col-md-4">
-                                <div class="container" style="width: 100%;">
+
+                        <div  class="row" style="margin-top:23px;">
+                            <div class="col-md-4" >
+                                <div class="container" style="width:100%;">
                                     <div class="row">
                                         <div class="col-md-12 text-center">
                                             <div class="form-group">
                                                 <button type="button" class="btn btn-success btn-wd btn-fill">Show InActive</button>
                                             </div>
                                         </div>
+
+
                                     </div>
+
                                     <div class="row">
                                         <div class="col-md-12" style="height:41px;">
                                             <div class="form-group">
-                                                <div class="col-md-3">
-                                                    <label class="Label">Vendor:</label>
-                                                </div>
+                                                <div class="col-md-3"><label class="Label">Customer:</label></div>
                                                 <div class="col-md-9">
-                                                    <select id="ddSelectVendor" style="width:100%" class="form-control border-input vendor">
+                                                    <select id="ddSelect" style="width:100%" class="form-control border-input Customer" >
                                                         <option value="0">Select</option>
-                                                        <%--<option style="color: blue; font-weight: bold" value="-1">Add New</option>--%>
                                                         <option value="1">Nahid</option>
                                                         <option value="2">Shakir</option>
                                                     </select>
                                                 </div>
+
                                             </div>
                                         </div>
+
                                     </div>
                                     <hr />
                                     <div class="row clearfix">
                                         <div class="col-md-12 table-responsive">
-                                            <table id="VendorBalance" class="display  table-bordered">
+                                            <table id="CustomerBalance" class="display  table-bordered">
                                                 <thead>
-                                                    <tr style="border-top: hidden;">
-                                                        <th>Vendor</th>
+                                                    <tr style="border-top:hidden;">
+                                                        <th>Customer</th>
                                                         <th>Total Amount</th>
                                                         <th>Received Amount</th>
                                                         <th>Balance</th>
@@ -361,7 +360,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="container" style="width: 100%;">
+                                <div class="container" style="width:100%;">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-6">
@@ -374,12 +373,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group text-right">
 
-                                                    <button type="button" id="btnVendorPayment" class="btn btn-success btn-fill" onclick="VendorPaymentPage();">Payment</button>
-                                                    <button type="button" class="btn btn-success  btn-fill" id="btnAddVendor" onclick="AddNewVendor();">Add New Vendor</button>
+                                                    <button type="button" id="btnCstReceive" class="btn btn-success btn-fill" onclick="CustomerReceivePage();">Receive</button>
+                                                    <button type="button" class="btn btn-primary  btn-fill" id="btnAddCustomer" onclick="AddNewCustomer();">Add New Customer</button>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+
+
                                     <div class="row">
                                         <div class="col-md-12">
                                            <div class="col-md-2 labelWidth PaddingClass">
@@ -387,8 +389,8 @@
                                     </div>
                                     <div class="col-md-4 text-left PaddingClass">
                                         <div class="input-wrapper">
-                                            <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStartVendorList" />
-                                            <label for="datePickStartVendorList" class="fa fa-calendar input-icon datePickStartVendorList"></label>
+                                            <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStartCustomerList" />
+                                            <label for="datePickStartCustomerList" class="fa fa-calendar input-icon datePickStartCustomerList"></label>
                                         </div>
                                     </div>
                                     <div class="col-md-2 labelWidth  PaddingClass ">
@@ -396,23 +398,25 @@
                                     </div>
                                     <div class="col-md-4 PaddingClass">
                                         <div class="input-wrapper">
-                                            <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEndVendorList" />
-                                            <label for="datePickEndVendorList" class="fa fa-calendar input-icon datePickEndVendorList"></label>
+                                            <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEndCustomerList" />
+                                            <label for="datePickEndCustomerList" class="fa fa-calendar input-icon datePickEndCustomerList"></label>
                                         </div>
                                     </div>
                                         </div>
                                     </div>
                                     <hr />
+                                   
+                                   
+
                                     <div class="row clearfix">
                                         <div class="col-md-12 table-responsive">
-                                            <div id="ExpenseList" class="row">
+                                            <div id="CustomerList" class="row">
                                                 <div class="col-md-12">
-                                                    <table id="demoGridForVendorList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
+                                                    <table id="demoGridForCustmoerList" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
                                                         <thead>
-                                                            <tr style="border-top: hidden;">
-                                                                <th>All
-                                                                <input type="checkbox" /></th>
-                                                                <th>Vendor</th>
+                                                            <tr style="border-top:hidden;">
+                                                                <th>All <input type="checkbox" /></th>
+                                                                <th>Customer</th>
                                                                 <th>Invoice No</th>
                                                                 <th>Invoice Date</th>
                                                                 <th>Voucher No</th>
@@ -422,62 +426,86 @@
                                                                 <th>Memo</th>
                                                                 <th>Class</th>
                                                                 <th>Project</th>
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>
-                                                                    <input type="checkbox" /></td>
+                                                                <td><input type="checkbox" /></td>
                                                                 <td>Saad</td>
                                                                 <td>Invoice No 1</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>Voucher No 1</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>30,000.00</td>
-                                                                <td>UnPaid</td>
-                                                                <td>Electricity Bill Month of July 2019</td>
+                                                                <td>Not Received</td>
+                                                                <td>Sale Computers</td>
                                                                 <td></td>
                                                                 <td></td>
+
                                                             </tr>
                                                             <tr>
-                                                                <td>
-                                                                    <input type="checkbox" /></td>
+                                                                <td><input type="checkbox" /></td>
                                                                 <td>Shakir</td>
                                                                 <td>Invoice No 2</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>Voucher No 2</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>20,000.00</td>
-                                                                <td>UnPaid</td>
-                                                                <td>Internet Bill Month of July 2019</td>
+                                                                <td>Not Received</td>
+                                                                <td>Sale Printers</td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>
-                                                                    <input type="checkbox" /></td>
+                                                                <td><input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 3</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>Receive Voucher No 3</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>25,000.00</td>
-                                                                <td>Paid</td>
-                                                                <td>PTCL Bill Month of July 2019</td>
+                                                                <td>Received</td>
+                                                                <td>Sale Men T-Shirts</td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>
-                                                                    <input type="checkbox" /></td>
+                                                                <td><input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 4</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>Voucher No 4</td>
                                                                 <td>31 Aug 2019</td>
                                                                 <td>25,000.00</td>
-                                                                <td>UnPaid</td>
-                                                                <td>KE Bill Month of Aug 2019</td>
+                                                                <td>Not Recived</td>
+                                                                <td>Sale Men T-Shirts</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="checkbox" /></td>
+                                                                <td>Adnan</td>
+                                                                <td>Invoice No 5</td>
+                                                                <td>31 Aug 2019</td>
+                                                                <td>Voucher No 5</td>
+                                                                <td>31 Aug 2019</td>
+                                                                <td>25,000.00</td>
+                                                                <td>Not Received</td>
+                                                                <td>Sale Mobiles</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="checkbox" /></td>
+                                                                <td>Adnan</td>
+                                                                <td>Invoice No 6</td>
+                                                                <td>31 Aug 2019</td>
+                                                                <td>Voucher No 6</td>
+                                                                <td>31 Aug 2019</td>
+                                                                <td>25,000.00</td>
+                                                                <td>Not Received</td>
+                                                                <td>Sale Women Cloths</td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
@@ -491,30 +519,361 @@
                             </div>
                         </div>
                         <hr />
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="AddNewVendor" class="wrapper">
+    
+    <div id="ReceiveVoucher" class="wrapper">
         <div class="content">
             <div class="container-fluid">
 
                 <div class="header">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4 class="title">Vendor Information </h4>
+                            <h4 class="title">Receive Voucher </h4>
                         </div>
-                        <div class="col-md-4" style="padding-top: 3%;">
-                            <a id="CloseCustomerInformationForm" style="float: right;" onclick="show_confirmVendorInformation('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                        <div class="col-md-4" style="padding-top:3%;">
+                            <a id="CloseReceiveVoucher" style="float:right;" onclick="show_confirm('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
                 </div>
-                <div>
-                    <hr />
+                <div><hr /></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>To </label>
+                                <select id="ddlCustomer" class="form-control border-input Customer ">
+                                    <option value="0">Select</option>
+                                    <option value="1">Nahid</option>
+                                    <option value="2">Shakir</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Invoice No </label>
+                                <input type="text" class="form-control border-input">
+                            </div>
+                        </div>
+                              <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Invoice Date </label>
+                                <%--<input type="date" id="InvoiceDate" class="form-control border-input InvoiceDate" />--%>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="enter Invoice Date" class="form-control border-input " id="InvoiceDate" />
+                                    <label for="InvoiceDate" class="fa fa-calendar input-icon InvoiceDate"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Due Date</label>
+                                <%--<input type="date" id="DueDate" class="form-control border-input DueDate" />--%>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="enter Due Date" class="form-control border-input " id="DueDate" />
+                                    <label for="DueDate" class="fa fa-calendar input-icon DueDate"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Voucher No </label>
+                                <input type="text" class="form-control border-input">
+                            </div>
+                        </div>
+                       <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Voucher Date </label>
+                                <%--<input type="date" id="VoucherDate" class="form-control border-input VoucherDate" />--%>
+                                <div class="input-wrapper">
+                                    <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="VoucherDate" />
+                                    <label for="VoucherDate" class="fa fa-calendar input-icon VoucherDate"></label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Tax </label>
+                                <select id="ddlAddTax" class="form-control border-input tax">
+                                    <option value="0">-Select-</option>
+                                    <option value="1">GST</option>
+                                    <option value="2">WHT</option>
+                                    <option value="3">Further GST</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                    <div class="container" style="width:100%;">
+                        <div class="row clearfix">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table display table-bordered table-hover table-sortable" id="tab_logic">
+                                    <thead>
+
+                                        <tr>
+                                            <th>
+                                                Class
+                                            </th>
+                                            <th>
+                                                Account
+                                            </th>
+                                            <th>
+                                                Memo
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Project
+                                            </th>
+                                            <th>
+                                                Remove
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0' data-id="0" class="hidden">
+
+                                            <td data-name="sel">
+                                                <div id="Class">
+                                                    <select id="ddlClass" name="Class0" class="form-control" onchange="ddAddClass();">
+                                                        <option value="0">Select</option>
+                                                        <option style="color:blue;font-weight:bold" value="-1">Add New Class</option>
+                                                        <option value="1">Class1</option>
+                                                        <option value="2">Class2</option>
+                                                        <option value="3">Class3</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </td>
+                                            <td data-name="sel">
+                                                <div id="Acount">
+                                                    <select id="ddlAccount" name="Account0" class="form-control">
+                                                        <option value="0">Select</option>
+                                                        <option style="color:blue;font-weight:bold" value="-1">Add New Account </option>
+                                                        <option value="1">Sale</option>
+                                                        <option value="2">Expense</option>
+                                                        <option value="3">Utilities</option>
+                                                    </select>
+                                                </div>
+
+                                            </td>
+                                            <td data-name="Memo">
+                                                <input type="text" name='Memo0' class="form-control" />
+                                            </td>
+
+                                            <td data-name="Amount">
+                                                <input type="number" name='Amount0' class="form-control" />
+                                            </td>
+
+                                            <td data-name="sel">
+                                                <select id="ddlProject" name="Project0" class="form-control">
+                                                    <option value="0">Select</option>
+                                                    <option style="color:blue;font-weight:bold" value="-1">Add New Project</option>
+                                                    <option value="1">Project1</option>
+                                                    <option value="2">Project2</option>
+                                                    <option value="3">Project3</option>
+                                                </select>
+                                            </td>
+
+                                            <td data-name="del">
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-7 text-right">
+                                    <label>Total</label>
+                                </div>
+                                <div class="col-md-5 text-left">
+                                    <label>10,000.00</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
+                                <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
+                            </div>
+                            <!--<div class="col-md-2">
+                                <button type="button" class="btn btn-info btn-fill ">Save</button>
+                            </div>-->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="container-fluid" style="padding-top: 3%;">
+                        <div class="col-md-12">
+                            <label id="lblItemDetail " class="btn-group" onclick="ShowItemDetailTable();">Item Detail</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="Product_Detail">
+                    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                    <div class="container" style="width:100%;">
+                        <div class="row clearfix">
+
+                            <div class="col-md-12 table-responsive">
+                                <table class="table display table-bordered table-hover table-sortable" id="tab_ItemDetail">
+                                    <thead>
+
+                                        <tr>
+                                            <th>
+                                                Product/Services
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                            <th>
+                                                Qty
+                                            </th>
+                                            <th>
+                                                Rate
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Project
+                                            </th>
+                                            <th>
+                                                Remove
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr0' data-id="0" class="hidden">
+
+                                            <td data-name="sel">
+                                                <div id="Product">
+                                                    <select id="ddlProduct" name="Product0" class="form-control">
+                                                        <option value="0">Select</option>
+                                                        <option style="color:blue;font-weight:bold" value="-1">Add New</option>
+                                                        <option value="1">Printer</option>
+                                                        <option value="2">Laptop</option>
+                                                        <option value="3">Era</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </td>
+                                            <td data-name="Des">
+                                                <div id="Des">
+                                                    <input type="text" name='Desc0' class="form-control" />
+                                                </div>
+
+                                            </td>
+                                            <td data-name="Qty">
+                                                <input type="number" name='Qty0' class="form-control" />
+                                            </td>
+
+                                            <td data-name="Rate">
+                                                <input type="number" name='Rate0' class="form-control" />
+                                            </td>
+                                            <td data-name="Amount">
+                                                <input type="number" name='Amount0' class="form-control" />
+                                            </td>
+
+                                            <td data-name="sel">
+                                                <select id="ddlProject" name="Project0" class="form-control">
+                                                    <option value="0">Select</option>
+                                                    <option style="color:blue;font-weight:bold" value="-1">Add New Project</option>
+                                                    <option value="1">Project1</option>
+                                                    <option value="2">Project2</option>
+                                                    <option value="3">Project3</option>
+                                                </select>
+                                            </td>
+
+                                            <td data-name="del">
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-8 text-right">
+                                    <label>Total</label>
+                                </div>
+                                <div class="col-md-4 text-left">
+                                    <label>10,000.00</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <a id="add_rowProduct" class="btn btn-primary btn-fill   btn-sm btn-wd ">Add a new Line</a>
+                                <a id="ClearAllLinesProduct" class="btn btn-primary btn-fill   btn-sm  btn-wd">Clear All Lines</a>
+
+                            </div>
+                            <!--<div class="col-md-2">
+                                <button type="button" class="btn btn-info btn-fill ">Save</button>
+                            </div>-->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="container-fluid" style="padding-top: 3%;">
+                       
+                              <div class="col-md-12 text-right">
+                            <button type="button" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                            <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+
+                        </div>
+
+                
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="AddNewCustomer" class="wrapper">
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4 class="title">Customer Information </h4>
+                        </div>
+                        <div class="col-md-4" style="padding-top:3%;">
+                            <a id="CloseCustomerInformationForm" style="float:right;" onclick="show_confirmCustomerInformation('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                            <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                </div>
+                <div><hr /></div>
+
+                  <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -641,15 +1000,15 @@
                             <div class="form-group">
                                 <label>As Of: </label>
                                 <div class="input-wrapper">
-                                    <input type="text" placeholder="enter As of Date" class="form-control border-input " id="VendorAsOFdate" />
-                                    <label for="VendorAsOFdate" class="fa fa-calendar input-icon VendorAsOFdate"></label>
+                                    <input type="text" placeholder="enter As of Date" class="form-control border-input " id="CustomerAsOFdate" />
+                                    <label for="CustomerAsOFdate" class="fa fa-calendar input-icon CustomerAsOFdate"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Account </label>
-                                <select id="ddlVendorAccount" class="form-control border-input">
+                                <select id="ddlCustomerAccount" class="form-control border-input">
                                     <option value="0">Select</option>
                                     <option value="1">Sales</option>
                                     <option value="2">Expense</option>
@@ -668,13 +1027,12 @@
 
                     </div>
                 </div>
-
+              
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12">
-
-                            <button type="button" style="float: right" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
-                            <a style="float: right" class="btn btn-info btn-fill btn-sm btn-wd " href="https://e.fbr.gov.pk/esbn/Service.aspx?PID=lmPn%2fLtGhNykqPqtHCLZzg%3d%3d" target="_blank">Verify</a>
+                            <button type="button" style="float:right" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                            <a style="float:right" class="btn btn-info btn-fill btn-sm btn-wd " href="https://e.fbr.gov.pk/esbn/Service.aspx?PID=lmPn%2fLtGhNykqPqtHCLZzg%3d%3d" target="_blank">Verify</a>
 
                         </div>
                     </div>
@@ -683,351 +1041,28 @@
             </div>
         </div>
     </div>
-    <div id="ExpenseVoucher" class="wrapper">
+    <div id="Received" class="wrapper">
         <div class="content">
             <div class="container-fluid">
 
                 <div class="header">
                     <div class="row">
-                        <div class="col-md-8">
-                            <h4 class="title">Expense Voucher </h4>
+                        <div class="col-md-2">
+                            <h4 class="title">Received </h4>
+
                         </div>
-                        <div class="col-md-4" style="padding-top: 3%;">
-                            <a id="CloseExpenseVoucher" style="float: right;" onclick="show_confirm('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                           <div class="col-md-6" style="padding-top: 3%;">
+
+                            <label id="lblStatus" style="padding: 8px; border-radius: 50px;background:#23dd0a;">Received <i class="ti-na"></i></label>
+                        </div>
+                        <div class="col-md-4" style="padding-top:3%;">
+                            <a id="CloseReceivedVoucher" style="float:right;" onclick="show_confirmReceived('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
                 </div>
-                <div>
-                    <hr />
-                </div>
+                <div><hr /></div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>From </label>
-                                <select id="ddSelect" class="form-control border-input vendor" >
-                                    <option value="0">Select</option>
-                                    <%--<option style="color: blue; font-weight: bold" value="-1">Add New</option>--%>
-                                    <option value="1">Nahid</option>
-                                    <option value="2">Shakir</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Invoice No </label>
-                                <input type="text" class="form-control border-input" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Invoice Date </label>
-                                <%--<input type="date" id="InvoiceDate" class="form-control border-input InvoiceDate" />--%>
-                                <div class="input-wrapper">
-                                    <input type="text" placeholder="enter Invoice Date" class="form-control border-input " id="InvoiceDate" />
-                                    <label for="InvoiceDate" class="fa fa-calendar input-icon InvoiceDate"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Due Date</label>
-                                <%--<input type="date" id="DueDate" class="form-control border-input DueDate" />--%>
-                                <div class="input-wrapper">
-                                    <input type="text" placeholder="enter Due Date" class="form-control border-input " id="DueDate" />
-                                    <label for="DueDate" class="fa fa-calendar input-icon DueDate"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Voucher No </label>
-                                <input type="text" class="form-control border-input" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Voucher Date </label>
-                                <%--<input type="date" id="VoucherDate" class="form-control border-input VoucherDate" />--%>
-                                <div class="input-wrapper">
-                                    <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="VoucherDate" />
-                                    <label for="VoucherDate" class="fa fa-calendar input-icon VoucherDate"></label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Tax </label>
-                                <select id="ddlAddTax" class="form-control border-input tax" style="width:100%;">
-                                    <option value="0">-Select-</option>
-                                    <!--<option style="color:blue;font-weight:bold" value="-1">Add New</option>-->
-                                    <option value="1">GST</option>
-                                    <option value="2">WHT</option>
-                                    <option value="3">Further GST</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width: 100%;">
-                        <div class="row clearfix">
-                            <div class="col-md-12 table-responsive">
-                                <table class="table display table-bordered table-hover table-sortable" id="tab_logic">
-                                    <thead>
-
-                                        <tr>
-                                            <th>Class
-                                            </th>
-                                            <th>Account
-                                            </th>
-                                            <th>Memo
-                                            </th>
-                                            <th>Amount
-                                            </th>
-                                            <th>Project
-                                            </th>
-                                            <th>Remove
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='row1' data-id="1" class="hidden">
-
-                                            <td data-name="sel">
-                                                <div id="div_Class">
-                                                    <select id="ddlClass" name="Class1" style="width:100%" class="form-control select ">
-                                                        <option value="0">Select</option>
-                                                        
-                                                        <option value="1">Class1</option>
-                                                        <option value="2">Class2</option>
-                                                        <option value="3">Class3</option>
-                                                    </select>
-                                                </div>
-
-                                            </td>
-                                            <td data-name="sel">
-                                                <div id="Acount">
-                                                    <select id="ddlAccount" name="Account1" class="form-control select">
-                                                        <option value="0">Select</option>
-                                                        <option style="color: blue; font-weight: bold" value="-1">Add New Account </option>
-                                                        <option value="1">Sale</option>
-                                                        <option value="2">Expense</option>
-                                                        <option value="3">Utilities</option>
-                                                    </select>
-                                                </div>
-
-                                            </td>
-                                            <td data-name="td_Memo">
-                                                <input type="text" name='Memo1' class="form-control memo" />
-                                            </td>
-
-                                            <td data-name="td_Amount">
-                                                <input type="number" name='txtAmount1' class="form-control Amount" />
-                                            </td>
-
-                                            <td data-name="sel">
-                                                <div id="td_project">
-                                                    <select id="ddlProject" name="Project1" class="form-control select">
-                                                        <option value="0">Select</option>
-                                                        <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
-                                                        <option value="1">Project1</option>
-                                                        <option value="2">Project2</option>
-                                                        <option value="3">Project3</option>
-                                                    </select>
-                                                </div>
-                                            </td>
-
-                                            <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-7 text-right">
-                                    <label>Total</label>
-                                </div>
-                                <div class="col-md-5 text-left">
-                                    <label>10,000.00</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-
-                                <a id="add_rowAccountDetail" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                <a id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
-                                <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
-                            </div>
-                            <!--<div class="col-md-2">
-                                <button type="button" class="btn btn-info btn-fill ">Save</button>
-                            </div>-->
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="container-fluid" style="padding-top: 3%;">
-                        <div class="col-md-12">
-                            <label id="lblItemDetail " class="btn-group" onclick="ShowItemDetailTable();">Item Detail</label>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="Product_Detail">
-                    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width: 100%;">
-                        <div class="row clearfix">
-
-                            <div class="col-md-12 table-responsive">
-                                <table class="table display table-bordered table-hover table-sortable" id="tab_ItemDetail">
-                                    <thead>
-
-                                        <tr>
-                                            <th>Product/Services
-                                            </th>
-                                            <th>Description
-                                            </th>
-                                            <th>Qty
-                                            </th>
-                                            <th>Rate
-                                            </th>
-                                            <th>Amount
-                                            </th>
-                                            <th>Project
-                                            </th>
-                                            <th>Remove
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='Itemaddr0' data-id="0" class="hidden">
-
-                                            <td data-name="sel">
-                                                <div id="Product">
-                                                    <select id="ddlProduct" name="Product0" class="form-control select">
-                                                        <option value="0">Select</option>
-                                                        <option style="color: blue; font-weight: bold" value="-1">Add New</option>
-                                                        <option value="1">Printer</option>
-                                                        <option value="2">Laptop</option>
-                                                        <option value="3">Era</option>
-                                                    </select>
-
-                                                </div>
-
-                                            </td>
-                                            <td data-name="Des">
-                                                <div id="Des">
-                                                    <input type="text" name='Desc0' class="form-control" />
-                                                </div>
-
-                                            </td>
-                                            <td data-name="Qty">
-                                                <input type="number" name='Qty0' class="form-control" />
-                                            </td>
-
-                                            <td data-name="Rate">
-                                                <input type="number" name='Rate0' class="form-control" />
-                                            </td>
-                                            <td data-name="Amount">
-                                                <input type="number" name='Amount0' class="form-control" />
-                                            </td>
-
-                                            <td data-name="sel">
-                                                <div id="itemproject">
-                                                    <select id="itemddlProject" name="Project0" class="form-control select">
-                                                        <option value="0">Select</option>
-                                                        <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
-                                                        <option value="1">Project1</option>
-                                                        <option value="2">Project2</option>
-                                                        <option value="3">Project3</option>
-                                                    </select>
-                                                </div>
-                                            </td>
-
-                                            <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-8 text-right">
-                                    <label>Total</label>
-                                </div>
-                                <div class="col-md-4 text-left">
-                                    <label>10,000.00</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-
-                                <a id="add_rowProduct" class="btn btn-primary btn-fill   btn-sm btn-wd ">Add a new Line</a>
-                                <a id="ClearAllLinesProduct" class="btn btn-primary btn-fill   btn-sm  btn-wd">Clear All Lines</a>
-
-                            </div>
-                            <!--<div class="col-md-2">
-                    <button type="button" class="btn btn-info btn-fill ">Save</button>
-                </div>-->
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="container-fluid" style="padding-top: 3%;">
-                        <div class="col-md-12 text-right">
-                            <button type="button" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                            <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
-                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div id="Payment" class="wrapper">
-        <div class="content">
-                <div class="container-fluid">
-                    <div class="header">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-2">
-                                    <h4 class="title">Payment </h4>
-                                </div>
-                                 <div class="col-md-6" style="padding-top: 3%;">
-
-                            <label id="lblStatus" style="padding: 8px; border-radius: 50px;background:#23dd0a;">Paid <i class="ti-na"></i></label>
-                        </div>
-                                <div class="col-md-4 text-right" style="padding-top: 3%;">
-                                    <a id="ClosePaymentVoucher" onclick="show_confirmPayment('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
-                                    <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-              
-                <div>
-                    <hr />
-                </div>
-                  <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -1039,9 +1074,9 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Voucher Date </label>
-                               <div class="input-wrapper">
-                                    <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="VoucherDatePayment" />
-                                    <label for="VoucherDatePayment" class="fa fa-calendar input-icon VoucherDatePayment"></label>
+                                 <div class="input-wrapper">
+                                    <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="VoucherDateReceived" />
+                                    <label for="VoucherDateReceived" class="fa fa-calendar input-icon VoucherDateReceived"></label>
                                 </div>
                             </div>
                         </div>
@@ -1059,17 +1094,17 @@
 
                     </div>
                 </div>
-                <div id="div_demoPayment" class="row">
+                <div id="div_demoReceived" class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width: 100%;">
+                    <div class="container" style="width:100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive BalanceTable">
-                                <table id="demoGridForVenderBalance" class="display  table-bordered BalanceTable">
+                                <table id="demoGridForCustomerBalance" class="display  table-bordered BalanceTable">
                                     <thead>
-                                        <tr style="border-top: hidden;">
-                                            <th>Vendor</th>
+                                        <tr style="border-top:hidden;">
+                                            <th>Customer</th>
                                             <th>Total Amount</th>
-                                            <th>Paid Amount</th>
+                                            <th>Received Amount</th>
                                             <th>Balance</th>
                                         </tr>
                                     </thead>
@@ -1088,19 +1123,19 @@
                     </div>
 
                 </div>
-                <div id="div_Payment" class="row">
+                <div id="div_Received" class="row">
                     <div class="col-md-12">
-                        <table id="demoGrid_Payment" class="display  table-bordered">
+                        <table id="demoGrid_Received" class="display  table-bordered">
                             <thead>
-                                <tr style="border-top: hidden;">
+                                <tr style="border-top:hidden;">
                                     <th>Invoice No</th>
                                     <th>Amount</th>
                                     <th>Discount</th>
                                     <th>Net Amount</th>
-                                    <th>Amt To Pay</th>
+                                    <th>Amt To Receive</th>
                                     <th>Tax Account</th>
                                     <th>Tax Amount</th>
-                                    <th>Payment</th>
+                                    <th>Received</th>
                                     <th>Memo</th>
                                     <th>Remove</th>
 
@@ -1110,20 +1145,14 @@
                                 <tr>
                                     <td>Invoice No 1</td>
                                     <td>11,000.00</td>
-                                    <td>
-                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Discount" /></td>
+                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Discount" /></td>
                                     <td>10,500.00</td>
-                                    <td>
-                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Amt to Pay" /></td>
+                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Amt to Pay" /></td>
                                     <td>WHT</td>
-                                    <td>
-                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Tax Amount" /></td>
+                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Tax Amount" /></td>
                                     <td>5,500.00</td>
-                                    <td>
-                                        <input type="text" class="form-control border-input col-md-2" />
-                                    </td>
-                                    <td>
-                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button></td>
+                                    <td><input type="text" class="form-control border-input col-md-2" /> </td>
+                                    <td><button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button></td>
 
 
                                 </tr>
@@ -1192,7 +1221,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="container" style="width: 100%">
+                    <div class="container" style="width:100%">
                         <div class="col-md-6">
                             <div class="col-md-2">
                                 <label>Total:</label>
@@ -1214,24 +1243,30 @@
                 </div>
                 <div class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width: 100%;">
+                    <div class="container" style="width:100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive">
                                 <table class="table display table-bordered table-hover table-sortable" id="tab_BankDetail">
                                     <thead>
 
                                         <tr>
-                                            <th>Bank
+                                            <th>
+                                                Bank
                                             </th>
-                                            <th>Bank Balance
+                                            <th>
+                                                Bank Balance
                                             </th>
-                                            <th>Cheque No
+                                            <th>
+                                                Cheque No
                                             </th>
-                                            <th>Cheque Date
+                                            <th>
+                                                Cheque Date
                                             </th>
-                                            <th>Cheque Amount
+                                            <th>
+                                                Cheque Amount
                                             </th>
-                                            <th>Remove
+                                            <th>
+                                                Remove
                                             </th>
                                         </tr>
                                     </thead>
@@ -1242,7 +1277,7 @@
                                                 <div id="Bank">
                                                     <select name="Bank0" class="form-control">
                                                         <option value="0">Select</option>
-                                                        <option value="-1" style="color: blue; font-weight: bold">Add New</option>
+                                                        <option value="-1" style="color:blue;font-weight:bold">Add New</option>
                                                         <option value="1">HBL</option>
                                                         <option value="2">Meezan</option>
                                                         <option value="3">Alfalah</option>
@@ -1252,7 +1287,7 @@
                                             </td>
 
                                             <td data-name="BankBalance">
-                                                <label>50,000.00</label>
+                                                <label>  50,000.00</label>
 
                                             </td>
 
@@ -1269,7 +1304,7 @@
                                             </td>
 
                                             <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1280,7 +1315,7 @@
                             <div class="col-md-6">
 
                                 <a id="add_rowBankDetail" class="btn btn-primary  btn-fill  btn-wd btn-sm">Add a new Line</a>
-                                <a id="ClearAllBankDetail" class="btn btn-primary  btn-fill  btn-wd btn-sm ">Clear All Lines</a>
+                                <a id="ClearAll" class="btn btn-primary  btn-fill  btn-wd btn-sm ">Clear All Lines</a>
                                 <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd btn-sm">Save</button>-->
                             </div>
                             <div class="col-md-6">
@@ -1299,21 +1334,19 @@
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12 text-right">
-                            <button type="button" id="btnInActive" class="btn btn-info btn-fill btn-sm btn-wd ">InActive/Void</button>
-                            <button type="button" id="btnEditPayment" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                            <button type="button" id="btnDeletePayment" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
-                            <button type="button" id="btnSavePayment" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
-                            
+                              <button type="button" id="btnInActive" class="btn btn-info btn-fill btn-sm btn-wd ">InActive/Void</button>
+                            <button type="button" id="btnEditReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                            <button type="button" id="btnDeleteReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                            <button type="button" id="btnSaveReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
 
                         </div>
                     </div>
                 </div>
 
-
-             </div>
+            </div>
         </div>
     </div>
-    <div id="AddVenderModel" class="modal fade bd-example-modal-sm" role="dialog">
+    <div id="AddCustomerModel" class="modal fade bd-example-modal-sm" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -1345,7 +1378,6 @@
 
         </div>
     </div>
-     
     <div id="AddTaxModel" class="modal fade bd-example-modal-sm" role="dialog">
         <div class="modal-dialog">
 
@@ -1371,8 +1403,7 @@
 
         </div>
     </div>
-
-     <div id="AddLegalEntity" class="modal fade bd-example-modal-sm" role="dialog">
+    <div id="AddLegalEntity" class="modal fade bd-example-modal-sm" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -1447,7 +1478,6 @@
 
         </div>
     </div>
-
     <div class="modal" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true" data-backdrop="false">
         <div class="vertical-alignment-helper">
             <div class="modal-dialog modal-sm vertical-align-center">
@@ -1464,13 +1494,4 @@
             </div>
         </div>
     </div>
-    
-<%--<script type="text/javascript">
-    $(function () {
-        //Initialize Select2 Elements
-        $(".select").select2();
-    });
-</script>--%>
-
 </asp:Content>
-

@@ -1,27 +1,84 @@
 ﻿
 $(document).ready(function () {
-    $('#ddlAddTax').select2({}).on('select2:open', function () {
+    $('.tax').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
         if (!$('.select2-link').length) {
             a.$results.parents('.select2-results')
                     .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
                     .on('click', function (b) {
-                        $("#ddlAddTax").select2('close');
+                        $(".tax").select2('close');
                       $('#AddTaxModel').modal();
                     });
         }
     });
-    $('#ddSelect').select2({}).on('select2:open', function () {
+    $('.vendor').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
         if (!$('.select2-link').length) {
             a.$results.parents('.select2-results')
                     .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
                     .on('click', function (b) {
-                        $("#ddSelect").select2('close');
+                        $(".vendor").select2('close');
                         $('#AddVenderModel').modal();
                     });
         }
     });
+    $('#ddlLegal').select2({}).on('select2:open', function () {
+        var a = $(this).data('select2');
+        if (!$('.select2-link').length) {
+            a.$results.parents('.select2-results')
+                    .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
+                    .on('click', function (b) {
+                        $("#ddlLegal").select2('close');
+                        $('#AddLegalEntity').modal();
+                    });
+        }
+    });
+    $('#ddlTaxProfile').select2({}).on('select2:open', function () {
+        var a = $(this).data('select2');
+        if (!$('.select2-link').length) {
+            a.$results.parents('.select2-results')
+                    .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
+                    .on('click', function (b) {
+                        $("#ddlTaxProfile").select2('close');
+                        $('#AddTaxModel').modal();
+                    });
+        }
+    });
+    $('#ddlCity').select2({}).on('select2:open', function () {
+        var a = $(this).data('select2');
+        if (!$('.select2-link').length) {
+            a.$results.parents('.select2-results')
+                    .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
+                    .on('click', function (b) {
+                        $("#ddlCity").select2('close');
+                        $('#AddCity').modal();
+                    });
+        }
+    });
+    $('#ddlCountry').select2({}).on('select2:open', function () {
+        var a = $(this).data('select2');
+        if (!$('.select2-link').length) {
+            a.$results.parents('.select2-results')
+                    .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
+                    .on('click', function (b) {
+                        $("#ddlCountry").select2('close');
+                        $('#AddCountry').modal();
+                    });
+        }
+    });
+    $('#ddlVendorAccount').select2({}).on('select2:open', function () {
+        var a = $(this).data('select2');
+        if (!$('.select2-link').length) {
+            a.$results.parents('.select2-results')
+                    .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
+                    .on('click', function (b) {
+                        $("#ddlVendorAccount").select2('close');
+                        $('#AddTaxModel').modal();
+                    });
+        }
+    });
+    
+    
     let simplepicker = new SimplePicker(".datePickStart");
     let simplepicker2 = new SimplePicker(".datePickEnd");
     let simplepicker3 = new SimplePicker(".InvoiceDate");
@@ -29,6 +86,9 @@ $(document).ready(function () {
     let simplepicker5 = new SimplePicker(".VoucherDate");
     let simplepicker6 = new SimplePicker(".datePickStartVendorList");
     let simplepicker7 = new SimplePicker(".datePickEndVendorList");
+    let simplepicker8 = new SimplePicker(".VoucherDatePayment");
+    let simplepicker9 = new SimplePicker(".VendorAsOFdate");
+    
     $("#datePickStart").focus(function () {
         simplepicker.open('');
         simplepicker.disableTimeSection();
@@ -121,6 +181,32 @@ $(document).ready(function () {
     simplepicker7.on('close', function () {
 
         $("#datePickEndVendorList").removeAttr('readonly');
+    });
+    $("#VoucherDatePayment").focus(function () {
+        simplepicker8.open();
+        simplepicker8.disableTimeSection();
+        $("#VoucherDatePayment").attr('readonly', 'true');
+    });
+    simplepicker8.on('submit', (date) => {
+        $("#VoucherDatePayment")[0].value = formatDate(date);
+        $("#VoucherDatePayment").prop('readonly', false);
+    });
+    simplepicker8.on('close', function () {
+
+        $("#VoucherDatePayment").removeAttr('readonly');
+    });
+    $("#VendorAsOFdate").focus(function () {
+        simplepicker9.open();
+        simplepicker9.disableTimeSection();
+        $("#VendorAsOFdate").attr('readonly', 'true');
+    });
+    simplepicker9.on('submit', (date) => {
+        $("#VendorAsOFdate")[0].value = formatDate(date);
+        $("#VendorAsOFdate").prop('readonly', false);
+    });
+    simplepicker9.on('close', function () {
+
+        $("#VendorAsOFdate").removeAttr('readonly');
     });
     $("#lblItemDetail").click(function () {
         ShowItemDetailTable();

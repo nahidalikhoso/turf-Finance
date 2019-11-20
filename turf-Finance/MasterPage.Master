@@ -63,6 +63,12 @@
                             </a>
 
                         </li>
+                          <li>
+                            <a id="Approvel" href="Approvel.aspx" >
+                                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                <p>Approve</p>
+                            </a>
+                        </li>
                         <li>
                             <a id="Expense" href="Expense.aspx" >
                                 <i class="fa fa-credit-card" aria-hidden="true"></i>
@@ -70,25 +76,25 @@
                             </a>
                         </li>
                         <li>
-                            <a id="Sale" onclick="ShowCard('ManageLicence', this.id, 'Sale.html');">
+                            <a id="Sale" href="Sale.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>Sales</p>
                             </a>
                         </li>
                         <li>
-                            <a id="tax" onclick="ShowCard('ManageLicence', this.id, 'Tax.html');">
+                            <a id="tax" href="Tax.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>Tax</p>
                             </a>
                         </li>
                         <li>
-                            <a id="Accounting" onclick="ShowCard('ManageLicence', this.id, 'Accounting.html');">
+                            <a id="Accounting" href="Accounting.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>Accounting</p>
                             </a>
                         </li>
                         <li>
-                            <a id="Bank" onclick="ShowCard('ManageLicence', this.id, 'Bank.html');">
+                            <a id="Bank" href="Bank.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>Bank</p>
                             </a>
@@ -100,13 +106,13 @@
                             </a>
                         </li>
                         <li>
-                            <a id="JournalEntry" onclick="ShowCard('ManageLicence', this.id, 'JournalEntry.html');">
+                            <a id="JournalEntry" href="JournalEntry.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>Journal Entry</p>
                             </a>
                         </li>
                         <li>
-                            <a id="ProdAndServices" onclick="ShowCard('ManageLicence', this.id, 'ProductAndServices.html');">
+                            <a id="ProdAndServices" href="ProductAndServices.aspx">
                                 <i class="fa fa-credit-card"></i>
                                 <p>P & S</p>
                             </a>

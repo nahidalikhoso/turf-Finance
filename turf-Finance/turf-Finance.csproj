@@ -94,6 +94,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounting.aspx" />
+    <Content Include="Approvel.aspx" />
+    <Content Include="Bank.aspx" />
+    <Content Include="JournalEntry.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -195,17 +199,47 @@
     <Content Include="CheckDatePicker.aspx" />
     <Content Include="Expense.aspx" />
     <Content Include="PettyCash.aspx" />
+    <Content Include="ProductAndServices.aspx" />
+    <Content Include="Sale.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\Custom\Accounting.js" />
+    <Content Include="scripts\Custom\Approvel.js" />
+    <Content Include="scripts\Custom\Bank.js" />
     <Content Include="scripts\Custom\Expense.js" />
+    <Content Include="scripts\Custom\JournalEntry.js" />
     <Content Include="scripts\Custom\MyScript.js" />
     <Content Include="scripts\Custom\PettyCash.js" />
+    <Content Include="scripts\Custom\ProductAndServices.js" />
     <Content Include="scripts\Custom\Sale.js" />
+    <Content Include="scripts\Custom\Tax.js" />
     <Content Include="scripts\ellipsis.js" />
     <Content Include="select2.aspx" />
+    <Content Include="Tax.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting.aspx.cs">
+      <DependentUpon>Accounting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounting.aspx.designer.cs">
+      <DependentUpon>Accounting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Approvel.aspx.cs">
+      <DependentUpon>Approvel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Approvel.aspx.designer.cs">
+      <DependentUpon>Approvel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bank.aspx.cs">
+      <DependentUpon>Bank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bank.aspx.designer.cs">
+      <DependentUpon>Bank.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CheckDateExample.Master.cs">
       <DependentUpon>CheckDateExample.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,6 +261,13 @@
     <Compile Include="Expense.aspx.designer.cs">
       <DependentUpon>Expense.aspx</DependentUpon>
     </Compile>
+    <Compile Include="JournalEntry.aspx.cs">
+      <DependentUpon>JournalEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JournalEntry.aspx.designer.cs">
+      <DependentUpon>JournalEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,13 +282,34 @@
     <Compile Include="PettyCash.aspx.designer.cs">
       <DependentUpon>PettyCash.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductAndServices.aspx.cs">
+      <DependentUpon>ProductAndServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductAndServices.aspx.designer.cs">
+      <DependentUpon>ProductAndServices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sale.aspx.cs">
+      <DependentUpon>Sale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sale.aspx.designer.cs">
+      <DependentUpon>Sale.aspx</DependentUpon>
+    </Compile>
     <Compile Include="select2.aspx.cs">
       <DependentUpon>select2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="select2.aspx.designer.cs">
       <DependentUpon>select2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tax.aspx.cs">
+      <DependentUpon>Tax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tax.aspx.designer.cs">
+      <DependentUpon>Tax.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
