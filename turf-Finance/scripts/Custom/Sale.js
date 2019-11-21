@@ -166,8 +166,6 @@
 
         $("#VoucherDateReceived").removeAttr('readonly');
     });
-
-
     $("#datePickStartCustomerList").focus(function () {
 
         simplepicker7.open();
@@ -208,11 +206,7 @@
 
         $("#CustomerAsOFdate").removeAttr('readonly');
     });
-  
-
-
-    $('#my_tab').tabs();
-
+   
     $("#lblItemDetail").click(function () {
 
         ShowItemDetailTable();
@@ -222,14 +216,14 @@
     });
     ClickCheckBox();
     ClickCheckBoxCustomerList();
-    $('#demoGrid tbody').on('click', 'tr td:eq(1)', function () {
+    $('#tblSaleInvoiceList tbody').on('click', 'tr td:eq(1)', function () {
         jQuery('#ReceiveList').hide();
         jQuery('#Product_Detail').hide();
         jQuery('#btnEdit').show();
         jQuery('#btnDelete').show();
         jQuery('#ReceiveVoucher').show();
     });
-    $('#demoGrid tbody').on('click', 'tr:eq(3) td:eq(3)', function () {
+    $('#tblSaleInvoiceList tbody').on('click', 'tr:eq(3) td:eq(3)', function () {
         jQuery('#ReceiveList').hide();
         $("#btnEditReceived").show();
         $("#btnInActive").show();
@@ -248,27 +242,14 @@
     
 
     $("#ReceiveVoucher").hide();
-    $("#ReceiveVoucherEdit").hide();
     $("#Received").hide();
-    $("#ReceivedEditMode").hide();
     $("#AddNewCustomer").hide();
-    $("#AddNewCustomerOnEdit").hide();
-
-    
-    //$("#ddSelect").select2();
-
-  //  EditableDataTable();
     AddRow();
     AddRow();
- 
     AddRow_Bank()
     AddRowBankDetail();
-  
     AddRow_Item();
     AddRowItemDeatil();
-  
- 
-
     $("#tab_logic").DataTable({
         "ordering": false,
         "paging": false,
@@ -282,7 +263,7 @@
         "searching": false
     })
    
-    $("#demoGrid").DataTable({
+    $("#tblSaleInvoiceList").DataTable({
 
         columnDefs: [{
             targets:[ 1,2,3,4,5,6,7,,8],
@@ -367,7 +348,7 @@
 
     });
 
-    $("#div_DemoGrid").show();
+    $("#div_SaleInvoiceList").show();
     $("#div_NotReceivedVoucher").hide();
 
 });
@@ -393,11 +374,6 @@ function AddNewCustomer() {
     jQuery('#AddNewCustomer').show();
  
 }
-
-
-
-
-
 function ShowItemDetailTable() {
     jQuery('#Product_Detail').show();
 
@@ -558,7 +534,6 @@ function AddRowBankDetail() {
         });
     })
 }
-
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -678,88 +653,8 @@ function AddRowItemDeatil() {
         });
     })
 }
-
-
-
-//function EditableDataTable() {
-//    $("#add_row").on("click", function () {
-
-//        // Dynamic Rows Code
-
-//        // Get max row id and set new id
-
-//        var newid = 1;
-
-//        $.each($("#tab_logic tr"), function () {
-//            if (parseInt($(this).data("id")) > newid) {
-//                newid = parseInt($(this).data("id"));
-//            }
-//        });
-//        newid++;
-//        var tr = $(" <tr></tr>", {
-//            id: "addr" + newid,
-//            "data-id": newid
-//        });
-
-//        // loop through each td and create new elements with name of newid
-//        $.each($("#tab_logic tbody tr:nth(0) td"), function () {
-//            var td;
-//            var cur_td = $(this);
-
-//            var children = cur_td.children();
-
-//            // add new td and element if it has a nane
-//            if ($(this).data("name") !== undefined) {
-
-//                td = $("    <td></td>", {
-//                    "data-name": $(cur_td).data("name")
-//                });
-
-//                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-//                c.attr("name", $(cur_td).data("name") + newid);
-
-//                c.appendTo($(td));
-//                td.appendTo($(tr));
-//            } else {
-
-//                td = $("  <td></td>", {
-//                    'text': $('#tab_logic tr').length
-//                }).appendTo($(tr));
-//            }
-//        });
-
-
-//        // add the new row
-//        $(tr).appendTo($('#tab_logic'));
-
-//        $(tr).find("td button.row-remove").on("click", function () {
-//            $(this).closest("tr").remove();
-//        });
-//    });
-
-//    // Sortable Code
-//    var fixHelperModified = function (e, tr) {
-//        var $originals = tr.children();
-//        var $helper = tr.clone();
-
-//        $helper.children().each(function (index) {
-//            $(this).width($originals.eq(index).width())
-//        });
-
-//        return $helper;
-//    };
-
-//    $(".table-sortable tbody").sortable({
-//        helper: fixHelperModified
-//    }).disableSelection();
-
-//    $(".table-sortable thead").disableSelection();
-
-
-//}
 function AllRowRemove() {
 }
-
 function show_confirm(message) {
     show_confirm_message({
         message: message,
@@ -796,13 +691,9 @@ function show_confirmReceived(message) {
         }
     });
 }
-
 function activaTab(tab) {
     $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
-
-
-
 function show_confirmCustomerInformation(message) {
    
     show_confirm_message({
@@ -817,16 +708,12 @@ function show_confirmCustomerInformation(message) {
         }
     });
 }
-
-
-
 function AllVoucher() {
-    $("#div_DemoGrid").show();
+    $("#div_SaleInvoiceList").show();
     $("#div_NotReceivedVoucher").hide();
-
 }
 function AllNotReceivedVoucher() {
-    $("#div_DemoGrid").hide();
+    $("#div_SaleInvoiceList").hide();
     $("#div_NotReceivedVoucher").show();
 
 }

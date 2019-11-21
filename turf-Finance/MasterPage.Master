@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-   
+
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png" />
@@ -28,17 +28,38 @@
     <link href="assets/css/DataTable/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/DataTable/responsive.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/simplepicker.css" rel="stylesheet" />
+    <link href="assets/css/select2.css" rel="stylesheet" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
     <script src="assets/js/simplepicker.js"></script>
     <%--<script src="assets/js/jquery-3.4.1.min.js"></script>--%>
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <%--<script src="assets/js/jquery-1.10.2.js"></script>--%>
+
     <script src="assets/js/DataTable/jquery.dataTables.min.js"></script>
-    <script src="assets/js/DataTable/dataTables.bootstrap4.min.js"></script>
+    <%--<script src="assets/js/DataTable/dataTables.bootstrap4.min.js"></script>--%>
     <script src="scripts/ellipsis.js"></script>
     <script src="assets/js/bootstrap_confirm_dialog.js"></script>
-    <link href="assets/css/select2.css" rel="stylesheet" />
+
     <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/DataTable/bootstrap.min.js"></script>
-    <script src="scripts/Custom/MyScript.js"></script>   
+    <%--<script src="assets/js/DataTable/bootstrap.min.js"></script>--%>
+    <script src="scripts/Custom/MyScript.js"></script>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="assets/js/bootstrap-checkbox-radio.js"></script>
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="assets/js/paper-dashboard.js"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -52,7 +73,7 @@
             -->
                 <div class="sidebar-wrapper">
                     <div class="logo">
-                        <a href="http://www.creative-tim.com" class="simple-text">BIP Finance
+                        <a class="simple-text">turf Finance
                         </a>
                     </div>
                     <ul class="nav">
@@ -63,14 +84,14 @@
                             </a>
 
                         </li>
-                          <li>
-                            <a id="Approvel" href="Approvel.aspx" >
+                        <li>
+                            <a id="Approvel" href="Approvel.aspx">
                                 <i class="fa fa-credit-card" aria-hidden="true"></i>
                                 <p>Approve</p>
                             </a>
                         </li>
                         <li>
-                            <a id="Expense" href="Expense.aspx" >
+                            <a id="Expense" href="Expense.aspx">
                                 <i class="fa fa-credit-card" aria-hidden="true"></i>
                                 <p>Expense</p>
                             </a>
@@ -122,7 +143,7 @@
 
                 </div>
             </div>
-            <div class="main-panel" style="background-color:white!important">
+            <div class="main-panel" style="background-color: white!important">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -199,18 +220,5 @@
 
 </body>
 <!--   Core JS Files   -->
-
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-<!--  Checkbox, Radio & Switch Plugins -->
-<script src="assets/js/bootstrap-checkbox-radio.js"></script>
-<!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-<script src="assets/js/paper-dashboard.js"></script>
-<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
+    
 </html>

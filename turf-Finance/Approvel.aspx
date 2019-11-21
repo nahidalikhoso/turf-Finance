@@ -30,19 +30,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                                <div class="col-md-1">
-                                                    <label class="Label">Vendor:</label>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <select id="ddlVendor" style="width: 100%" class="form-control border-input selectVendorOrCustomer">
-                                                        <option value="0">Select</option>
-                                                        <%--<option style="color: blue; font-weight: bold" value="-1">Add New</option>--%>
-                                                        <option value="1">Nahid</option>
-                                                        <option value="2">Shakir</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                <div class="form-group" id="div_ddlvendor">
+                                    <div class="col-md-1">
+                                        <label class="Label">Vendor:</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select id="ddlVendor" style="width: 100%" class="form-control border-input selectVendorOrCustomer">
+                                            <option value="0">Select</option>
+                                            <%--<option style="color: blue; font-weight: bold" value="-1">Add New</option>--%>
+                                            <option value="1">Nahid</option>
+                                            <option value="2">Shakir</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -495,6 +495,38 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="AddVenderModel" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Name</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Name </label>
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    </div>
+                    <div class="form-group">
+                        <label>Type </label>
+                        <select id="type" class="form-control border-input" style="width: 40%;">
+                            <option value="1">Vender</option>
+                            <option value="2">Customer</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="modal" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true" data-backdrop="false">

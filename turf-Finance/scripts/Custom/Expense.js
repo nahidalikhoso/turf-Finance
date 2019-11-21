@@ -1,5 +1,7 @@
 ﻿
 $(document).ready(function () {
+    CalculateNetAmount();
+    CalculatePayment();
     $('.tax').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
         if (!$('.select2-link').length) {
@@ -77,8 +79,6 @@ $(document).ready(function () {
                     });
         }
     });
-    
-    
     let simplepicker = new SimplePicker(".datePickStart");
     let simplepicker2 = new SimplePicker(".datePickEnd");
     let simplepicker3 = new SimplePicker(".InvoiceDate");
@@ -88,7 +88,6 @@ $(document).ready(function () {
     let simplepicker7 = new SimplePicker(".datePickEndVendorList");
     let simplepicker8 = new SimplePicker(".VoucherDatePayment");
     let simplepicker9 = new SimplePicker(".VendorAsOFdate");
-    
     $("#datePickStart").focus(function () {
         simplepicker.open('');
         simplepicker.disableTimeSection();
@@ -211,9 +210,6 @@ $(document).ready(function () {
     $("#lblItemDetail").click(function () {
         ShowItemDetailTable();
     });
-    $("#lblItemDetailEdit").click(function () {
-        ShowItemDetailTableEdit();
-    });
     $('#tblExpenseVoucherList tbody').on('click', 'tr td:eq(1)', function () {
         jQuery('#div_ExpList').hide();
         jQuery('#Product_DetailEdit').hide();
@@ -238,42 +234,15 @@ $(document).ready(function () {
     $("#Payment").hide();
     $("#AddNewVendor").hide();
     ClickCheckBox();
+    ClickCheckBoxVendorCredit();
     ClickCheckBoxVendorList();
-    AddRow();
- 
-   
+    // AddRow();
+     AddRow_Account();
     AddRowAccountDeatil()
-    AddRow_Bank()
+   // AddRow_Bank()
     AddRowBankDetail();
-    AddRow_Item();
+   // AddRow_Item();
     AddRowItemDeatil();
-    $("#tab_logic").DataTable({
-        
-        drawCallback: function (settings) {
-            debugger
-            var api = this.api();
-            // Initialize custom control
-            initDataTableCtrl(api.table().container());
-        },
-        responsive: {
-            details: {
-
-                renderer: function (api, rowIdx, columns) {
-
-                    var $row_details = $.fn.DataTable.Responsive.defaults.details.renderer(api, rowIdx, columns);
-
-                    // Initialize custom control
-                    initDataTableCtrl($row_details);
-
-                    return $row_details;
-                }
-            }
-        },
-        "ordering": false,
-        "paging": false,
-        "bInfo": false,
-        "searching": false
-    })
     $("#tab_ItemDetail").DataTable({
         "ordering": false,
         "paging": false,
@@ -310,7 +279,7 @@ $(document).ready(function () {
         "searching": false
 
     });
-    $("#demoGrid_Payment").DataTable({
+    $("#tblPayment").DataTable({
         columnDefs: [{
             targets: 0,
             render: $.fn.dataTable.render.ellipsis(8)
@@ -364,9 +333,54 @@ $(document).ready(function () {
     });
     $("#div_ExpenseVoucherList").show();
     $("#div_UnpaidVoucher").hide();
+    $("#di_UseCredit").hide();
 });
+
+$("#tblExpenseVoucherDetail td input").on('change', function () {
+
+    var $td = $(this).closest('td');
+    var v = $td.find('input').val();
+    alert(v);
+   // table.cell($td).invalidate();
+});
+
+
+function initializeDataTable_ExpenseVoucherDetail()
+{
+    if (!$.fn.DataTable.isDataTable('#tblExpenseVoucherDetail'))
+    {
+        table = $("#tblExpenseVoucherDetail").DataTable();
+        table.destroy();
+    }
+
+    $("#tblExpenseVoucherDetail").dataTable({
+        drawCallback: function (settings) {
+            var api = this.api();
+            // Initialize custom control
+            initDataTableCtrl(api.table().container());
+        },
+        responsive: {
+            details: {
+
+                renderer: function (api, rowIdx, columns) {
+
+                    var $row_details = $.fn.DataTable.Responsive.defaults.details.renderer(api, rowIdx, columns);
+
+                    // Initialize custom control
+                    initDataTableCtrl($row_details);
+
+                    return $row_details;
+                }
+            }
+        },
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
+    });
+}
 function initDataTableCtrl(container) {
-    console.log("Container :"+container.innerHTML);
+    //console.log("Container :"+container.innerHTML);
     $('.select', container).select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
         if (!$('.select2-link').length) {
@@ -384,7 +398,6 @@ function initDataTableCtrl(container) {
 
     //$('select', container).select2();
 }
- 
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -412,11 +425,26 @@ function openExpenseVoucher() {
 function ShowItemDetailTable() {
     jQuery('#Product_Detail').show();
 }
-function AddRow() {
+
+function AddRow_Account() {
     
- 
+    
+        row =  '<tr id="row1" data-id="1" class="hidden">';
+        row += '<td data-name="sel"><div id="div_Class"><select id="ddlClass" name="Class1" style="width:100%" class="form-control select "><option value="0">Select</option><option value="1">Class1</option><option value="2">Class2</option><option value="3">Class3</option></select></div></td>';
+        row += '<td data-name="sel"><div id="Acount"><select id="ddlAccount" name="Account1" class="form-control select"><option value="0">Select</option><option style="color: blue; font-weight: bold" value="-1">Add New Account </option><option value="1">Sale</option><option value="2">Expense</option><option value="3">Utilities</option></select></div></td>';
+        row += '<td data-name="td_Memo"><input type="text" name="Memo1" class="form-control memo" /></td>';
+        row += '<td data-name="td_Amount"><input type="number" name="txtAmount1" class="form-control Amount" /></td>';
+        row += '<td data-name="sel"><div id="td_project"><select id="ddlProject" name="Project1" class="form-control select"><option value="0">Select</option><option style="color: blue; font-weight: bold" value="-1">Add New Project</option><option value="1">Project1</option><option value="2">Project2</option><option value="3">Project3</option></select></div></td>';
+        row += '<td data-name="del"><button class="btn btn-danger glyphicon   row-remove" style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button></td>';
+        row += '</tr>';
+    
+        $(row).appendTo($('#tblExpenseVoucherDetail'));
+        initializeDataTable_ExpenseVoucherDetail();
+}
+function AddRow(){
+    
     var newid = 1;
-    $.each($("#tab_logic tr"), function () {
+    $.each($("#tblExpenseVoucherDetail tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
             newid = parseInt($(this).data("id"));
         }
@@ -427,7 +455,7 @@ function AddRow() {
         "data-id": newid
     });
     // loop through each td and create new elements with name of newid
-    $.each($("#tab_logic tbody tr:nth(0) td"), function () {
+    $.each($("#tblExpenseVoucherDetail tbody tr:nth(0) td"), function () {
         var td;
         var cur_td = $(this);
         var children = cur_td.children();
@@ -442,23 +470,25 @@ function AddRow() {
             td.appendTo($(tr));
         } else {
             td = $("  <td></td>", {
-                'text': $('#tab_logic tr').length
+                'text': $('#tblExpenseVoucherDetail tr').length
             }).appendTo($(tr));
         }
     });
     // add the new row
-    $(tr).appendTo($('#tab_logic'));
-
+    $(tr).appendTo($('#tblExpenseVoucherDetail'));
+    //sumAmount();
 
     $(tr).find("td button.row-remove").on("click", function () {
         $(this).closest("tr").remove();
     });
+
 }
 function AddRowAccountDeatil() {
+        
     $("#add_rowAccountDetail").on("click", function () {
   
         var newid = 1;
-        $.each($("#tab_logic tr"), function () {
+        $.each($("#tblExpenseVoucherDetail tr"), function () {
             if (parseInt($(this).data("id")) > newid) {
                 newid = parseInt($(this).data("id"));
             }
@@ -469,7 +499,7 @@ function AddRowAccountDeatil() {
             "data-id": newid
         });
         // loop through each td and create new elements with name of newid
-        $.each($("#tab_logic tbody tr:nth(0) td"), function () {
+        $.each($("#tblExpenseVoucherDetail tbody tr:nth(0) td"), function () {
             var td;
             var cur_td = $(this);
             var children = cur_td.children();
@@ -484,13 +514,13 @@ function AddRowAccountDeatil() {
                 td.appendTo($(tr));
             } else {
                 td = $("  <td></td>", {
-                    'text': $('#tab_logic tr').length
+                    'text': $('#tblExpenseVoucherDetail tr').length
                 }).appendTo($(tr));
             }
         });
         // add the new row
-        $(tr).appendTo($('#tab_logic'));
-
+        $(tr).appendTo($('#tblExpenseVoucherDetail'));
+        //sumAmount();
 
         $(tr).find("td button.row-remove").on("click", function () {
             $(this).closest("tr").remove();
@@ -529,7 +559,7 @@ function AddRow_Bank() {
         }
         else {
             td = $("  <td></td>", {
-                'text': $('#tab_logic tr').length
+                'text': $('#tblExpenseVoucherDetail tr').length
             }).appendTo($(tr));
         }
     });
@@ -703,31 +733,30 @@ function AddRowItemDeatil() {
     })
 }
 function AllRowRemove() {
+    var table = $('#tblExpenseVoucherDetail').DataTable();
+    var tableRow = table.row($(this).parents('tr'));
+    table.row(tableRow).remove().draw();
+    $('#lblTotal').html('');
+    
+    
 }
+function AllRowRemoveItem() {
+    var table = $('#tab_ItemDetail').DataTable();
+    var tableRow = table.row($(this).parents('tr'));
+    table.row(tableRow).remove().draw();
+    $('#lbltotalItem').html('');
+
+
+}
+
 function show_confirm(message) {
+   
     show_confirm_message({
         message: message,
         executeYes: function () {
             $("#ExpenseVoucher").hide();
             $("#ExpenseVoucherEdit").hide();
             jQuery('#div_ExpList').show();
-        },
-        executeNo: function () {
-
-        }
-    });
-}
-function show_confirmPayment(message) {
-    show_confirm_message({
-        message: message,
-        executeYes: function () {
-            $("#ExpenseVoucher").hide();
-
-            $("#Payment").hide();
-            jQuery('#div_ExpList').show();
-            jQuery('#btnPay').hide();
-
-            AllVoucher();
         },
         executeNo: function () {
 
@@ -776,11 +805,13 @@ function ClickCheckBox() {
 
    });
 }
-function ddAddClass() {
+function ClickCheckBoxVendorCredit() {
+    
+    var $Pay = $("#di_UseCredit").hide(),
+   $cbs = $('input[id="chkUseCredit"]').click(function () {
+       $Pay.toggle($cbs.is(":checked"));
 
-    dd = document.getElementById('ddlClass');
-    if (dd.selectedOptions[0].value == '-1')
-        $('#AddTaxModel').modal();
+   });
 }
 function AddNewVendor() {
 
@@ -804,3 +835,61 @@ function ClickCheckBoxVendorList() {
 
    });
 }
+function sumAmountAccount() {
+    var sum = 0.00;
+    $('.txtAmount').each(function () {
+        if ($(this).val() != '')
+            sum = parseInt(sum) + parseInt($(this).val());
+       
+    });
+
+    $('#lblTotal').html(sum +".00");
+}
+function sumAmountItem() {
+    var sum = 0.00;
+    $('.txtAmountItem').each(function () {
+        if ($(this).val() != '')
+            sum = parseInt(sum) + parseInt($(this).val());
+
+    });
+
+    $('#lbltotalItem').html(sum + ".00");
+}
+function CalculateNetAmount() {
+    var diff = 0.00;
+    var invoiceAmount = $("#lblInvoiceAmount").text().split(",").join("");
+    if ($(".txtDiscount").val()!= '')
+    {
+        
+        var discount = $(".txtDiscount").val();
+       
+        diff = parseFloat(invoiceAmount).toFixed(2) - parseFloat(discount).toFixed(2)
+        $('#lblNetAmount').html(diff.toLocaleString());
+        CalculatePayment();
+    }
+    else
+    {
+       
+        diff = parseFloat(invoiceAmount).toFixed(2)
+        $('#lblNetAmount').html(diff.toLocaleString());
+        CalculatePayment();
+    }
+   
+}
+function CalculatePayment() {
+    var Payment = 0.00;
+    var NetAmount = $("#lblNetAmount").text();
+    if ($(".txtPayment").val()!='') {
+        var AmountToPay = $(".txtPayment").val();
+        Payment = parseFloat(NetAmount).toFixed(2) - parseFloat(AmountToPay).toFixed(2)
+        $('#lblPayment').html(Payment.toLocaleString());
+    }
+    else {
+        debugger
+        Payment = NetAmount;
+        $('#lblPayment').html(Payment.toLocaleString());
+    }
+   
+}
+
+

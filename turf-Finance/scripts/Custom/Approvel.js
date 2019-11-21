@@ -7,7 +7,7 @@
                     .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
                     .on('click', function (b) {
                         $(".selectVendorOrCustomer").select2('close');
-                        $('#AddTaxModel').modal();
+                        $('#AddVenderModel').modal();
                     });
         }
     });
@@ -40,12 +40,10 @@
 
         $("#datePickEnd").removeAttr('readonly');
     });
-
-
     $("#tblExpenseList").DataTable({
 
         columnDefs: [{
-            targets: [1,2,3,4,5,6,7,8],
+            targets: [1, 2, 3, 4, 5, 6, 7, 8],
             render: $.fn.dataTable.render.ellipsis(7)
         }],
         pageLength: '4',
@@ -65,6 +63,7 @@
         "pagingType": "full_numbers",
     });
     $("#div_ExpenseList").hide();
+    $("#div_ddlvendor").hide();
     ClickCheckBox();
 });
 function ClickCheckBox() {
@@ -76,29 +75,30 @@ function ClickCheckBox() {
 }
 function OpenExpenseList() {
     $("#div_AllVoucherList").hide();
+    $("#div_ddlvendor").show();
     $("#div_ExpenseList").show();
 }
-    function formatDate(date) {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
 
-        return [year, month, day].join('-');
-    }
-    function show_confirm(message) {
-        show_confirm_message({
-            message: message,
-            executeYes: function () {
-             
-            },
-            executeNo: function () {
+    return [year, month, day].join('-');
+}
+function show_confirm(message) {
+    show_confirm_message({
+        message: message,
+        executeYes: function () {
 
-            }
-        });
-    }
+        },
+        executeNo: function () {
+
+        }
+    });
+}

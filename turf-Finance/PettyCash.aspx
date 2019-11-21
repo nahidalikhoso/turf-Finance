@@ -175,14 +175,14 @@
                                                 </div>
                                             </td>
                                             <td data-name="Amount">
-                                                <input type="number" name='Amount0' class="form-control" />
+                                                <input type="number" name='Amount0' class="form-control txtAmount" onkeyup="sumAmount()" />
                                             </td>
                                             <td data-name="Memo">
                                                 <input type="text" name='Memo0' class="form-control" />
                                             </td>
                                             <td data-name="sel">
                                                 <div id="Class">
-                                                    <select id="ddlClass" name="Class0" class="form-control select" onchange="ddAddClass();">
+                                                    <select id="ddlClass" name="Class0" class="form-control">
                                                         <option value="0">Select</option>
                                                         <option value="1">Class1</option>
                                                         <option value="2">Class2</option>
@@ -193,7 +193,7 @@
                                             </td>
                                             <td data-name="sel">
                                                 <div id="project">
-                                                <select id="ddlProject" name="Project0" class="form-control select "  onchange="ddAddProject();">
+                                                <select id="ddlProject" name="Project0" class="form-control " >
                                                     <option value="0">Select</option>
                                                     <option value="1">Project1</option>
                                                     <option value="2">Project2</option>
@@ -211,9 +211,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-
+                                <label>Total <span id="spnTotal">0</span></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                <a id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                <button type="button" id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="ClearAllRow()">Clear All Lines</button>
                             </div>
                         </div>
                     </div>

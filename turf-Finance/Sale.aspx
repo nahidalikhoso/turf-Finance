@@ -1,42 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Sale.aspx.cs" Inherits="turf_Finance.Sale" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
     <script src="scripts/Custom/Sale.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-      <div id="ReceiveList" class="wrapper">
-        <ul id="my_tab"class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#RecList" style="font-weight:bold; ">Receive List</a></li>
-            <li><a data-toggle="tab" href="#customer" style="font-weight:bold;">Customer List</a></li>
+    <div id="ReceiveList" class="wrapper">
+        <ul id="my_tab" class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#RecList" style="font-weight: bold;">Receive List</a></li>
+            <li><a data-toggle="tab" href="#customer" style="font-weight: bold;">Customer List</a></li>
         </ul>
         <div class="tab-content" id="tabs">
             <div id="RecList" class="tab-pane fade in active">
                 <div class="content" id="ReceiveListTab">
                     <div class="container-fluid">
-                        <div class="row" style="margin-top:23px">
+                        <div class="row" style="margin-top: 23px">
                             <div class="col-md-12">
-                                   <div class="col-md-8">
-                                <div class="content">
-                                    <div class="form-group">
-                                          <div class="btn-group" role="group">
-                                        <button id="btnAll" type="button" class="btn btn-primary btn-wd " onclick="AllVoucher();">All</button>
-                                        <button id="btnPaid" type="button" class="btn btn-primary btn-wd ">Receive</button>
-                                        <button id="btnUnPaid" type="button" class="btn btn-primary btn-wd " onclick="AllNotReceivedVoucher();">NotReceived</button>
-                                        <button id="btnPartialPaid" type="button" class="btn btn-primary btn-wd ">Partial Received</button>
+                                <div class="col-md-8">
+                                    <div class="content">
+                                        <div class="form-group">
+                                            <div class="btn-group" role="group">
+                                                <button id="btnAll" type="button" class="btn btn-primary btn-wd " onclick="AllVoucher();">All</button>
+                                                <button id="btnPaid" type="button" class="btn btn-primary btn-wd ">Receive</button>
+                                                <button id="btnUnPaid" type="button" class="btn btn-primary btn-wd " onclick="AllNotReceivedVoucher();">NotReceived</button>
+                                                <button id="btnPartialPaid" type="button" class="btn btn-primary btn-wd ">Partial Received</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                             
-                           <div class="col-md-4 text-right">
+
+                                <div class="col-md-4 text-right">
                                     <button type="button" id="Modal" class="btn btn-info btn-fill" onclick="openSaleVoucher()">Add New Invoice</button>
                                 </div>
-                                   </div>
+                            </div>
 
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                  <div class="col-md-8">
+                                <div class="col-md-8">
                                     <div class="col-md-2 labelWidth PaddingClass">
                                         <label class="Label">Start Date:</label>
                                     </div>
@@ -68,11 +69,11 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="div_DemoGrid" class="row">
+                        <div id="div_SaleInvoiceList" class="row">
                             <div class="col-md-12">
-                                <table id="demoGrid" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
+                                <table id="tblSaleInvoiceList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                     <thead>
-                                        <tr style="border-top:hidden;">
+                                        <tr style="border-top: hidden;">
                                             <th>Customer</th>
                                             <th>Invoice No</th>
                                             <th>Invoice Date</th>
@@ -166,10 +167,11 @@
                         </div>
                         <div id="div_NotReceivedVoucher" class="row">
                             <div class="col-md-12">
-                                <table id="demoGridForNotReceived" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
+                                <table id="demoGridForNotReceived" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                     <thead>
-                                        <tr style="border-top:hidden;">
-                                            <th>All <input type="checkbox" /></th>
+                                        <tr style="border-top: hidden;">
+                                            <th>All
+                                                <input type="checkbox" /></th>
                                             <th>Customer</th>
                                             <th>Invoice No</th>
                                             <th>Invoice Date</th>
@@ -185,7 +187,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Saad</td>
                                             <td>Invoice No 1</td>
                                             <td>31 Aug 2019</td>
@@ -199,7 +202,8 @@
 
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Shakir</td>
                                             <td>Invoice No 2</td>
                                             <td>31 Aug 2019</td>
@@ -212,7 +216,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 3</td>
                                             <td>31 Aug 2019</td>
@@ -225,7 +230,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 4</td>
                                             <td>31 Aug 2019</td>
@@ -238,7 +244,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 5</td>
                                             <td>31 Aug 2019</td>
@@ -251,7 +258,8 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" /></td>
+                                            <td>
+                                                <input type="checkbox" /></td>
                                             <td>Adnan</td>
                                             <td>Invoice No 6</td>
                                             <td>31 Aug 2019</td>
@@ -274,9 +282,9 @@
                 <div class="content" id="customerList">
                     <div class="container-fluid">
 
-                        <div  class="row" style="margin-top:23px;">
-                            <div class="col-md-4" >
-                                <div class="container" style="width:100%;">
+                        <div class="row" style="margin-top: 23px;">
+                            <div class="col-md-4">
+                                <div class="container" style="width: 100%;">
                                     <div class="row">
                                         <div class="col-md-12 text-center">
                                             <div class="form-group">
@@ -288,11 +296,12 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-12" style="height:41px;">
+                                        <div class="col-md-12" style="height: 41px;">
                                             <div class="form-group">
-                                                <div class="col-md-3"><label class="Label">Customer:</label></div>
+                                                <div class="col-md-3">
+                                                    <label class="Label">Customer:</label></div>
                                                 <div class="col-md-9">
-                                                    <select id="ddSelect" style="width:100%" class="form-control border-input Customer" >
+                                                    <select id="ddSelect" style="width: 100%" class="form-control border-input Customer">
                                                         <option value="0">Select</option>
                                                         <option value="1">Nahid</option>
                                                         <option value="2">Shakir</option>
@@ -308,7 +317,7 @@
                                         <div class="col-md-12 table-responsive">
                                             <table id="CustomerBalance" class="display  table-bordered">
                                                 <thead>
-                                                    <tr style="border-top:hidden;">
+                                                    <tr style="border-top: hidden;">
                                                         <th>Customer</th>
                                                         <th>Total Amount</th>
                                                         <th>Received Amount</th>
@@ -360,7 +369,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <div class="container" style="width:100%;">
+                                <div class="container" style="width: 100%;">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-6">
@@ -384,38 +393,39 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                           <div class="col-md-2 labelWidth PaddingClass">
-                                        <label class="Label">Start Date:</label>
-                                    </div>
-                                    <div class="col-md-4 text-left PaddingClass">
-                                        <div class="input-wrapper">
-                                            <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStartCustomerList" />
-                                            <label for="datePickStartCustomerList" class="fa fa-calendar input-icon datePickStartCustomerList"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 labelWidth  PaddingClass ">
-                                        <label class="Label">End Date:</label>
-                                    </div>
-                                    <div class="col-md-4 PaddingClass">
-                                        <div class="input-wrapper">
-                                            <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEndCustomerList" />
-                                            <label for="datePickEndCustomerList" class="fa fa-calendar input-icon datePickEndCustomerList"></label>
-                                        </div>
-                                    </div>
+                                            <div class="col-md-2 labelWidth PaddingClass">
+                                                <label class="Label">Start Date:</label>
+                                            </div>
+                                            <div class="col-md-4 text-left PaddingClass">
+                                                <div class="input-wrapper">
+                                                    <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStartCustomerList" />
+                                                    <label for="datePickStartCustomerList" class="fa fa-calendar input-icon datePickStartCustomerList"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 labelWidth  PaddingClass ">
+                                                <label class="Label">End Date:</label>
+                                            </div>
+                                            <div class="col-md-4 PaddingClass">
+                                                <div class="input-wrapper">
+                                                    <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEndCustomerList" />
+                                                    <label for="datePickEndCustomerList" class="fa fa-calendar input-icon datePickEndCustomerList"></label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr />
-                                   
-                                   
+
+
 
                                     <div class="row clearfix">
                                         <div class="col-md-12 table-responsive">
                                             <div id="CustomerList" class="row">
                                                 <div class="col-md-12">
-                                                    <table id="demoGridForCustmoerList" class="display  table-bordered" style="border-top:hidden!important;border-right:none;border-left:none; width:100%">
+                                                    <table id="demoGridForCustmoerList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                                         <thead>
-                                                            <tr style="border-top:hidden;">
-                                                                <th>All <input type="checkbox" /></th>
+                                                            <tr style="border-top: hidden;">
+                                                                <th>All
+                                                                    <input type="checkbox" /></th>
                                                                 <th>Customer</th>
                                                                 <th>Invoice No</th>
                                                                 <th>Invoice Date</th>
@@ -431,7 +441,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Saad</td>
                                                                 <td>Invoice No 1</td>
                                                                 <td>31 Aug 2019</td>
@@ -445,7 +456,8 @@
 
                                                             </tr>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Shakir</td>
                                                                 <td>Invoice No 2</td>
                                                                 <td>31 Aug 2019</td>
@@ -458,7 +470,8 @@
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 3</td>
                                                                 <td>31 Aug 2019</td>
@@ -471,7 +484,8 @@
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 4</td>
                                                                 <td>31 Aug 2019</td>
@@ -484,7 +498,8 @@
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 5</td>
                                                                 <td>31 Aug 2019</td>
@@ -497,7 +512,8 @@
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><input type="checkbox" /></td>
+                                                                <td>
+                                                                    <input type="checkbox" /></td>
                                                                 <td>Adnan</td>
                                                                 <td>Invoice No 6</td>
                                                                 <td>31 Aug 2019</td>
@@ -526,7 +542,6 @@
             </div>
         </div>
     </div>
-    
     <div id="ReceiveVoucher" class="wrapper">
         <div class="content">
             <div class="container-fluid">
@@ -536,13 +551,15 @@
                         <div class="col-md-8">
                             <h4 class="title">Receive Voucher </h4>
                         </div>
-                        <div class="col-md-4" style="padding-top:3%;">
-                            <a id="CloseReceiveVoucher" style="float:right;" onclick="show_confirm('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                        <div class="col-md-4" style="padding-top: 3%;">
+                            <a id="CloseReceiveVoucher" style="float: right;" onclick="show_confirm('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
                 </div>
-                <div><hr /></div>
+                <div>
+                    <hr />
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -562,7 +579,7 @@
                                 <input type="text" class="form-control border-input">
                             </div>
                         </div>
-                              <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Invoice Date </label>
                                 <%--<input type="date" id="InvoiceDate" class="form-control border-input InvoiceDate" />--%>
@@ -592,7 +609,7 @@
                                 <input type="text" class="form-control border-input">
                             </div>
                         </div>
-                       <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Voucher Date </label>
                                 <%--<input type="date" id="VoucherDate" class="form-control border-input VoucherDate" />--%>
@@ -618,30 +635,24 @@
                 </div>
                 <div class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width:100%;">
+                    <div class="container" style="width: 100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive">
                                 <table class="table display table-bordered table-hover table-sortable" id="tab_logic">
                                     <thead>
 
                                         <tr>
-                                            <th>
-                                                Class
+                                            <th>Class
                                             </th>
-                                            <th>
-                                                Account
+                                            <th>Account
                                             </th>
-                                            <th>
-                                                Memo
+                                            <th>Memo
                                             </th>
-                                            <th>
-                                                Amount
+                                            <th>Amount
                                             </th>
-                                            <th>
-                                                Project
+                                            <th>Project
                                             </th>
-                                            <th>
-                                                Remove
+                                            <th>Remove
                                             </th>
                                         </tr>
                                     </thead>
@@ -652,7 +663,7 @@
                                                 <div id="Class">
                                                     <select id="ddlClass" name="Class0" class="form-control" onchange="ddAddClass();">
                                                         <option value="0">Select</option>
-                                                        <option style="color:blue;font-weight:bold" value="-1">Add New Class</option>
+                                                        <option style="color: blue; font-weight: bold" value="-1">Add New Class</option>
                                                         <option value="1">Class1</option>
                                                         <option value="2">Class2</option>
                                                         <option value="3">Class3</option>
@@ -665,7 +676,7 @@
                                                 <div id="Acount">
                                                     <select id="ddlAccount" name="Account0" class="form-control">
                                                         <option value="0">Select</option>
-                                                        <option style="color:blue;font-weight:bold" value="-1">Add New Account </option>
+                                                        <option style="color: blue; font-weight: bold" value="-1">Add New Account </option>
                                                         <option value="1">Sale</option>
                                                         <option value="2">Expense</option>
                                                         <option value="3">Utilities</option>
@@ -684,7 +695,7 @@
                                             <td data-name="sel">
                                                 <select id="ddlProject" name="Project0" class="form-control">
                                                     <option value="0">Select</option>
-                                                    <option style="color:blue;font-weight:bold" value="-1">Add New Project</option>
+                                                    <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
                                                     <option value="1">Project1</option>
                                                     <option value="2">Project2</option>
                                                     <option value="3">Project3</option>
@@ -692,7 +703,7 @@
                                             </td>
 
                                             <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -713,12 +724,9 @@
                             <div class="col-md-12">
 
                                 <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                <a id="Clear" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
                                 <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                             </div>
-                            <!--<div class="col-md-2">
-                                <button type="button" class="btn btn-info btn-fill ">Save</button>
-                            </div>-->
                         </div>
                     </div>
 
@@ -733,7 +741,7 @@
                 </div>
                 <div class="row" id="Product_Detail">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width:100%;">
+                    <div class="container" style="width: 100%;">
                         <div class="row clearfix">
 
                             <div class="col-md-12 table-responsive">
@@ -741,26 +749,19 @@
                                     <thead>
 
                                         <tr>
-                                            <th>
-                                                Product/Services
+                                            <th>Product/Services
                                             </th>
-                                            <th>
-                                                Description
+                                            <th>Description
                                             </th>
-                                            <th>
-                                                Qty
+                                            <th>Qty
                                             </th>
-                                            <th>
-                                                Rate
+                                            <th>Rate
                                             </th>
-                                            <th>
-                                                Amount
+                                            <th>Amount
                                             </th>
-                                            <th>
-                                                Project
+                                            <th>Project
                                             </th>
-                                            <th>
-                                                Remove
+                                            <th>Remove
                                             </th>
                                         </tr>
                                     </thead>
@@ -771,7 +772,7 @@
                                                 <div id="Product">
                                                     <select id="ddlProduct" name="Product0" class="form-control">
                                                         <option value="0">Select</option>
-                                                        <option style="color:blue;font-weight:bold" value="-1">Add New</option>
+                                                        <option style="color: blue; font-weight: bold" value="-1">Add New</option>
                                                         <option value="1">Printer</option>
                                                         <option value="2">Laptop</option>
                                                         <option value="3">Era</option>
@@ -800,7 +801,7 @@
                                             <td data-name="sel">
                                                 <select id="ddlProject" name="Project0" class="form-control">
                                                     <option value="0">Select</option>
-                                                    <option style="color:blue;font-weight:bold" value="-1">Add New Project</option>
+                                                    <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
                                                     <option value="1">Project1</option>
                                                     <option value="2">Project2</option>
                                                     <option value="3">Project3</option>
@@ -808,7 +809,7 @@
                                             </td>
 
                                             <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -841,15 +842,15 @@
                 </div>
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
-                       
-                              <div class="col-md-12 text-right">
+
+                        <div class="col-md-12 text-right">
                             <button type="button" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
                             <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
                             <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
 
                         </div>
 
-                
+
                     </div>
                 </div>
 
@@ -865,15 +866,17 @@
                         <div class="col-md-8">
                             <h4 class="title">Customer Information </h4>
                         </div>
-                        <div class="col-md-4" style="padding-top:3%;">
-                            <a id="CloseCustomerInformationForm" style="float:right;" onclick="show_confirmCustomerInformation('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                        <div class="col-md-4" style="padding-top: 3%;">
+                            <a id="CloseCustomerInformationForm" style="float: right;" onclick="show_confirmCustomerInformation('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
                 </div>
-                <div><hr /></div>
+                <div>
+                    <hr />
+                </div>
 
-                  <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -884,7 +887,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Legal Entity</label>
-                                <select  id="ddlLegal" class="form-control border-input">
+                                <select id="ddlLegal" class="form-control border-input">
                                     <option value="0">Select</option>
                                     <option value="1">Company</option>
                                     <option value="2">Individual</option>
@@ -1027,12 +1030,12 @@
 
                     </div>
                 </div>
-              
+
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12">
-                            <button type="button" style="float:right" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
-                            <a style="float:right" class="btn btn-info btn-fill btn-sm btn-wd " href="https://e.fbr.gov.pk/esbn/Service.aspx?PID=lmPn%2fLtGhNykqPqtHCLZzg%3d%3d" target="_blank">Verify</a>
+                            <button type="button" style="float: right" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                            <a style="float: right" class="btn btn-info btn-fill btn-sm btn-wd " href="https://e.fbr.gov.pk/esbn/Service.aspx?PID=lmPn%2fLtGhNykqPqtHCLZzg%3d%3d" target="_blank">Verify</a>
 
                         </div>
                     </div>
@@ -1051,17 +1054,19 @@
                             <h4 class="title">Received </h4>
 
                         </div>
-                           <div class="col-md-6" style="padding-top: 3%;">
+                        <div class="col-md-6" style="padding-top: 3%;">
 
-                            <label id="lblStatus" style="padding: 8px; border-radius: 50px;background:#23dd0a;">Received <i class="ti-na"></i></label>
+                            <label id="lblStatus" style="padding: 8px; border-radius: 50px; background: #23dd0a;">Received <i class="ti-na"></i></label>
                         </div>
-                        <div class="col-md-4" style="padding-top:3%;">
-                            <a id="CloseReceivedVoucher" style="float:right;" onclick="show_confirmReceived('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                        <div class="col-md-4" style="padding-top: 3%;">
+                            <a id="CloseReceivedVoucher" style="float: right;" onclick="show_confirmReceived('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
                 </div>
-                <div><hr /></div>
+                <div>
+                    <hr />
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -1074,7 +1079,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Voucher Date </label>
-                                 <div class="input-wrapper">
+                                <div class="input-wrapper">
                                     <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="VoucherDateReceived" />
                                     <label for="VoucherDateReceived" class="fa fa-calendar input-icon VoucherDateReceived"></label>
                                 </div>
@@ -1096,12 +1101,12 @@
                 </div>
                 <div id="div_demoReceived" class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width:100%;">
+                    <div class="container" style="width: 100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive BalanceTable">
                                 <table id="demoGridForCustomerBalance" class="display  table-bordered BalanceTable">
                                     <thead>
-                                        <tr style="border-top:hidden;">
+                                        <tr style="border-top: hidden;">
                                             <th>Customer</th>
                                             <th>Total Amount</th>
                                             <th>Received Amount</th>
@@ -1127,7 +1132,7 @@
                     <div class="col-md-12">
                         <table id="demoGrid_Received" class="display  table-bordered">
                             <thead>
-                                <tr style="border-top:hidden;">
+                                <tr style="border-top: hidden;">
                                     <th>Invoice No</th>
                                     <th>Amount</th>
                                     <th>Discount</th>
@@ -1145,14 +1150,20 @@
                                 <tr>
                                     <td>Invoice No 1</td>
                                     <td>11,000.00</td>
-                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Discount" /></td>
+                                    <td>
+                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Discount" /></td>
                                     <td>10,500.00</td>
-                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Amt to Pay" /></td>
+                                    <td>
+                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Amt to Pay" /></td>
                                     <td>WHT</td>
-                                    <td><input type="text" class="form-control border-input col-md-1" placeholder="enter Tax Amount" /></td>
+                                    <td>
+                                        <input type="text" class="form-control border-input col-md-1" placeholder="enter Tax Amount" /></td>
                                     <td>5,500.00</td>
-                                    <td><input type="text" class="form-control border-input col-md-2" /> </td>
-                                    <td><button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button></td>
+                                    <td>
+                                        <input type="text" class="form-control border-input col-md-2" />
+                                    </td>
+                                    <td>
+                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button></td>
 
 
                                 </tr>
@@ -1221,7 +1232,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="container" style="width:100%">
+                    <div class="container" style="width: 100%">
                         <div class="col-md-6">
                             <div class="col-md-2">
                                 <label>Total:</label>
@@ -1243,30 +1254,24 @@
                 </div>
                 <div class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width:100%;">
+                    <div class="container" style="width: 100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive">
                                 <table class="table display table-bordered table-hover table-sortable" id="tab_BankDetail">
                                     <thead>
 
                                         <tr>
-                                            <th>
-                                                Bank
+                                            <th>Bank
                                             </th>
-                                            <th>
-                                                Bank Balance
+                                            <th>Bank Balance
                                             </th>
-                                            <th>
-                                                Cheque No
+                                            <th>Cheque No
                                             </th>
-                                            <th>
-                                                Cheque Date
+                                            <th>Cheque Date
                                             </th>
-                                            <th>
-                                                Cheque Amount
+                                            <th>Cheque Amount
                                             </th>
-                                            <th>
-                                                Remove
+                                            <th>Remove
                                             </th>
                                         </tr>
                                     </thead>
@@ -1277,7 +1282,7 @@
                                                 <div id="Bank">
                                                     <select name="Bank0" class="form-control">
                                                         <option value="0">Select</option>
-                                                        <option value="-1" style="color:blue;font-weight:bold">Add New</option>
+                                                        <option value="-1" style="color: blue; font-weight: bold">Add New</option>
                                                         <option value="1">HBL</option>
                                                         <option value="2">Meezan</option>
                                                         <option value="3">Alfalah</option>
@@ -1287,7 +1292,7 @@
                                             </td>
 
                                             <td data-name="BankBalance">
-                                                <label>  50,000.00</label>
+                                                <label>50,000.00</label>
 
                                             </td>
 
@@ -1304,7 +1309,7 @@
                                             </td>
 
                                             <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color:white;color:black;border:none;"><span aria-hidden="true">×</span></button>
+                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1334,7 +1339,7 @@
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12 text-right">
-                              <button type="button" id="btnInActive" class="btn btn-info btn-fill btn-sm btn-wd ">InActive/Void</button>
+                            <button type="button" id="btnInActive" class="btn btn-info btn-fill btn-sm btn-wd ">InActive/Void</button>
                             <button type="button" id="btnEditReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
                             <button type="button" id="btnDeleteReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
                             <button type="button" id="btnSaveReceived" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>

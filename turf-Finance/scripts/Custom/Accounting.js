@@ -12,7 +12,7 @@
                     .prepend('<div class="select2-link"><a style="font-weight:bold;"> + Add New</a></div>')
                     .on('click', function (b) {
                         $(".bank").select2('close');
-                        $('#AddTaxModel').modal();
+                        $('#BankModal').modal();
                     });
         }
     });
