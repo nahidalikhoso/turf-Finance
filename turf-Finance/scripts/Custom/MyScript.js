@@ -5,7 +5,7 @@
 
 
 ////////////////////
-
+var RgexforPositiveNumberWithoutZero = /^[1-9]\d*$/;
 var EmailRegex = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
 var phoneRegex = /\b[0-9]{11}\b/;
 var AlphaRegex = /^[a-zA-Z ]+$/;
@@ -18,9 +18,15 @@ var RegexForInteger = /(^\d*\.?\d*[1-9]+\d*$)|(^[1-9]+\.?\d*$)/;
 
 var RegexForPositiveIncludeZero = /(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\.?\d*$)/;
 //var UserCount = /(^\d*\.?\d*[1-9]+\d*$)|(^[1-9]+\.?\d*$)/;
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 function ShowCard(cardID, callerID, location) {
-    debugger;
+    ;
     $('.cards').hide();
     $('#' + cardID).show();
     $('#frame1').removeAttr('src');
@@ -31,10 +37,9 @@ function ShowCard(cardID, callerID, location) {
 
 function showMessage(msg, notitype, iconname) {
     //notitype: info, success, warning, danger
-
     $.notify({
         icon: iconname,
-        message: msg
+        message: msg,
     },
     {
         type: notitype,

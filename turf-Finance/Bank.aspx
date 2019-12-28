@@ -3,6 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
     <script src="scripts/Custom/Bank.js"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            text-align: right;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <div id="BankList" class="wrapper">
@@ -19,46 +31,43 @@
 
                         <div class="row" style="margin-top: 23px">
                             <div class="col-md-12">
-                                <div class="col-md-9">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Bank </label>
-                                            <select id="ddBank" class="form-control border-input bank">
-                                                <option value="1">HBL</option>
-                                                <option value="2">Meezan Bank</option>
-                                                <option value="3">Alfalah</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3 ">
-                                        <div class="form-group">
-                                            <label>Start Date </label>
-                                            <div class="input-wrapper">
-                                                <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickStart" />
-                                                <label for="datePickStart" class="fa fa-calendar input-icon datePickStart"></label>
-                                            </div>
-                                        </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Bank </label>
+                                        <select id="ddBank" class="form-control border-input bank">
+                                            <option>Select</option>
+                                            <option value="1">1000 | HBL</option>
+                                            <option value="2">1001 | Meezan Bank</option>
+                                            <option value="3">1002 | Alfalah</option>
+                                        </select>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>End Date </label>
-                                            <div class="input-wrapper">
-                                                <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEnd" />
-                                                <label for="datePickEnd" class="fa fa-calendar input-icon datePickEnd"></label>
-                                            </div>
+                                <div class="col-md-3 ">
+                                    <div class="form-group">
+                                        <label>Start Date </label>
+                                        <div class="input-wrapper">
+                                            <input type="text" placeholder="enter End Date" class="form-control border-input datepicker" id="txtStartDate" />
+
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>End Date </label>
+                                        <div class="input-wrapper">
+                                            <input type="text" placeholder="enter End Date" class="form-control border-input datepicker" id="txtEndDate" />
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 3%;">
+                                    <div class="form-group">
 
-                                <div class="col-md-3" style="margin-top: 2%">
-                                    <div class="form-group text-right">
-                                        <!--<button type="button" id="btnReceive" class="btn btn-success btn-fill" onclick="ReceivePage();">Receive</button>-->
-                                        <button type="button" class="btn btn-success btn-fill">Export</button>
-                                        <button type="button" class="btn btn-success btn-fill">Print</button>
+                                        <label>Bank Balance :</label>
+                                        <label>10,000.00</label>
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +78,7 @@
                                 <table id="tblBankList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                     <thead>
                                         <tr style="border-top: hidden;">
+                                            <th>Bank</th>
                                             <th>Contacts</th>
                                             <th>Voucher No</th>
                                             <th>Voucher Date</th>
@@ -83,6 +93,7 @@
                                     <tbody>
 
                                         <tr>
+                                             <td>HBL</td>
                                             <td>Shakir</td>
                                             <td>Receive Voucher No 1</td>
                                             <td>31 Aug 2019</td>
@@ -94,26 +105,28 @@
                                             <td></td>
                                         </tr>
                                         <tr>
+                                            <td>Meezan</td>
                                             <td>Saad</td>
                                             <td>Payment Voucher No 1</td>
                                             <td>31 Aug 2019</td>
                                             <td>Cheque No 1</td>
                                             <td>31 Aug 2019</td>
                                             <td>Yes</td>
-                                            <td>Electricity bill Month of July 2019 </td>
+                                            <td>CashOut </td>
                                             <td></td>
                                             <td>15,500</td>
 
 
                                         </tr>
                                         <tr>
+                                            <td>Alfallah</td>
                                             <td>FBR</td>
-                                            <td>TaxPay Voucher No 1</td>
+                                            <td>Payment Voucher No 2</td>
                                             <td>15 Sep 2019</td>
                                             <td>Cheque No 3</td>
                                             <td>5 sep 2019</td>
                                             <td>No</td>
-                                            <td>Pay Tax to Govt: </td>
+                                            <td>Bank Transfer </td>
                                             <td></td>
                                             <td>5,000.00</td>
                                         </tr>
@@ -133,26 +146,33 @@
                         <div class="row" style="margin-top: 23px;">
                             <div class="col-md-12">
 
-
-                                <div class="form-group col-md-3">
-                                    <label>Contacts</label>
-                                    <select id="ddcontacts" style="width: 100%" class="form-control border-input Contacts">
-                                        <option value="0">Select</option>
-                                        <option value="1">Nahid</option>
-                                        <option value="2">Shakir</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>Receive Voucher</label>
-                                    <input type="text" class="form-control border-input" />
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>Voucher Date</label>
-                                    <div class="input-wrapper">
-                                        <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="CashInVoucherDate" />
-                                        <label for="CashInVoucherDate" class="fa fa-calendar input-icon CashInVoucherDate"></label>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Contacts</label>
+                                        <select id="ddcontacts" style="width: 100%" class="form-control border-input Contacts">
+                                            <option value="0">Select</option>
+                                            <option value="1">100 | Nahid</option>
+                                            <option value="2">101 | Shakir </option>
+                                        </select>
                                     </div>
+                                    <label id="lblEror" style="color: red"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Receive Voucher</label>
+                                        <input type="text" id="txtVoucherCashIn" class="form-control border-input" />
+                                    </div>
+                                    <label id="lblVoucherNoEror" style="color: red"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Voucher Date</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" placeholder="enter Voucher Date" class="form-control border-input datepicker " id="txtCashInVoucherDate" />
+
+                                        </div>
+                                    </div>
+                                    <label id="lblVoucherDateEror" style="color: red"></label>
                                 </div>
                             </div>
                         </div>
@@ -182,65 +202,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id='addr0' data-id="0" class="hidden">
-
-                                                    <td data-name="sel">
-                                                        <div id="Acount">
-                                                            <select id="ddlAccount" name="Account0" class="form-control">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Account </option>
-                                                                <option value="1">Sale</option>
-                                                                <option value="2">Expense</option>
-                                                                <option value="3">Utilities</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="Amount">
-                                                        <input type="number" name='Amount0' class="form-control" />
-                                                    </td>
-                                                    <td data-name="Memo">
-                                                        <input type="text" name='Memo0' class="form-control" />
-                                                    </td>
-
-                                                    <td data-name="sel">
-                                                        <div id="Class">
-                                                            <select id="ddlClass" name="Class0" class="form-control" onchange="ddAddClass();">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Class</option>
-                                                                <option value="1">Class1</option>
-                                                                <option value="2">Class2</option>
-                                                                <option value="3">Class3</option>
-                                                            </select>
-
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="sel">
-                                                        <select id="ddlProject" name="Project0" class="form-control">
-                                                            <option value="0">Select</option>
-                                                            <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
-                                                            <option value="1">Project1</option>
-                                                            <option value="2">Project2</option>
-                                                            <option value="3">Project3</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td data-name="del">
-                                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="TotalAmount">
                                     <div class="col-md-12">
                                         <div class="col-md-3 text-right">
                                             <label>Total:</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>10,000.00</label>
+                                            <label id="lblTotal">0.00</label>
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +220,7 @@
                                     <div class="col-md-12">
 
                                         <a id="add_rowCashIn" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                        <a id="ClearAllCashIn" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                        <a id="ClearAllCashIn" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="show_confirm_RemoveAllRowsFromCashIn('Are You Sure Want To Remove All Lines')">Clear All Lines</a>
                                         <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                                     </div>
                                 </div>
@@ -280,50 +252,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id='addr0' data-id="0" class="hidden">
-
-                                                    <td data-name="sel">
-                                                        <div id="Bank">
-                                                            <select id="ddlBank" name="Bank0" class="form-control">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Bank </option>
-                                                                <option value="1">Meezan Bank</option>
-                                                                <option value="2">HBL</option>
-                                                                <option value="3">Alfala</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="Balance">
-                                                        <label>100,000.00</label>
-                                                    </td>
-                                                    <td data-name="ChequeNo">
-                                                        <input type="text" name='ChequeNo0' class="form-control border-input" />
-                                                    </td>
-
-                                                    <td data-name="ChequeDate">
-                                                        <input type="date" name='ChequeNo0' class="form-control border-input" />
-
-                                                    </td>
-                                                    <td data-name="Amount">
-                                                        <input type="number" name='ChequeNo0' class="form-control border-input" />
-                                                    </td>
-
-                                                    <td data-name="del">
-                                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="lblShowChequeAmount">
                                     <div class="col-md-12">
                                         <div class="col-md-9 text-right">
                                             <label>Total:</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>10,000.00</label>
+                                            <label id="lblCheckAmount">0.00</label>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +270,7 @@
                                     <div class="col-md-12">
 
                                         <a id="add_rowBankDetail" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                        <a id="ClearAllBankDetail" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                        <a id="ClearAllBankDetail" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="show_confirm_RemoveAllRowsFromBankDetail('Are You Sure Want To Remove All Lines')">Clear All Lines</a>
                                         <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                                     </div>
                                 </div>
@@ -341,7 +280,7 @@
                         <div class="row">
                             <div class="container-fluid" style="padding-top: 3%;">
                                 <div class="col-md-12 text-right">
-                                    <button type="button" id="btnEditCashIn" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                                    <button type="button" id="btnEditCashIn" onclick="EnableCashInVoucher();" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
                                     <button type="button" id="btnDeleteCashIn" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
                                     <button type="button" id="btnInActiveCashIn" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Void/InActive</button>
                                     <button type="button" id="btnSaveCashIn" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
@@ -360,27 +299,35 @@
                         <div class="row" style="margin-top: 23px;">
                             <div class="col-md-12">
 
-
-                                <div class="form-group col-md-3">
-                                    <label>Contacts</label>
-                                    <select id="ddcontactsCashOut" style="width: 100%" class="form-control border-input Contacts">
-                                        <option value="0">Select</option>
-                                        <option value="1">Nahid</option>
-                                        <option value="2">Shakir</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>Payment Voucher</label>
-                                    <input type="text" class="form-control border-input" />
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>Voucher Date</label>
-                                    <div class="input-wrapper">
-                                        <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="CashOutVoucherDate" />
-                                        <label for="CashOutVoucherDate" class="fa fa-calendar input-icon CashOutVoucherDate"></label>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Contacts</label>
+                                        <select id="ddcontactsCashOut" style="width: 100%" class="form-control border-input Contacts">
+                                            <option value="0">Select</option>
+                                            <option value="1">100 | Nahid</option>
+                                            <option value="2">101 | Shakir</option>
+                                        </select>
                                     </div>
+                                    <label id="lblErorContactCashOut" style="color: red"></label>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Payment Voucher</label>
+                                        <input type="text" id="txtCoshOutVoucher" class="form-control border-input" />
+                                    </div>
+                                    <label id="lblVoucherNoErorCashOut" style="color: red"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Voucher Date</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" placeholder="enter Voucher Date" class="form-control border-input datepicker" id="txtCashOutVoucherDate" />
+
+                                        </div>
+                                    </div>
+                                    <label id="lblVoucherDateErorCashOut" style="color: red"></label>
+                                </div>
+
                             </div>
                         </div>
 
@@ -409,65 +356,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id='addr0' data-id="0" class="hidden">
-
-                                                    <td data-name="sel">
-                                                        <div id="Acount">
-                                                            <select id="ddlAcctCashOut" name="Account0" class="form-control">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Account </option>
-                                                                <option value="1">Sale</option>
-                                                                <option value="2">Expense</option>
-                                                                <option value="3">Utilities</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="Amount">
-                                                        <input type="number" name='Amount0' class="form-control" />
-                                                    </td>
-                                                    <td data-name="Memo">
-                                                        <input type="text" name='Memo0' class="form-control" />
-                                                    </td>
-
-                                                    <td data-name="sel">
-                                                        <div id="Class">
-                                                            <select id="ddlClsCashOut" name="Class0" class="form-control" onchange="ddAddClass();">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Class</option>
-                                                                <option value="1">Class1</option>
-                                                                <option value="2">Class2</option>
-                                                                <option value="3">Class3</option>
-                                                            </select>
-
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="sel">
-                                                        <select id="ddlPrjtCashOut" name="Project0" class="form-control">
-                                                            <option value="0">Select</option>
-                                                            <option style="color: blue; font-weight: bold" value="-1">Add New Project</option>
-                                                            <option value="1">Project1</option>
-                                                            <option value="2">Project2</option>
-                                                            <option value="3">Project3</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td data-name="del">
-                                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="div_ShowTotalAmount">
                                     <div class="col-md-12">
                                         <div class="col-md-3 text-right">
                                             <label>Total:</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>10,000.00</label>
+                                            <label id="lblTotalCashOunt">0.00</label>
                                         </div>
                                     </div>
                                 </div>
@@ -475,7 +374,7 @@
                                     <div class="col-md-12">
 
                                         <a id="add_rowCashOut" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                        <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                        <a id="clearAllLinesCashOut" onclick="show_confirm_RemoveAllRowsFromCashOut();" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
                                         <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                                     </div>
                                 </div>
@@ -507,50 +406,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id='addr0' data-id="0" class="hidden">
-
-                                                    <td data-name="sel">
-                                                        <div id="Bank1">
-                                                            <select id="ddlBankCashOut" name="Bank0" class="form-control">
-                                                                <option value="0">Select</option>
-                                                                <option style="color: blue; font-weight: bold" value="-1">Add New Bank </option>
-                                                                <option value="1">Meezan Bank</option>
-                                                                <option value="2">HBL</option>
-                                                                <option value="3">Alfala</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </td>
-                                                    <td data-name="Balance">
-                                                        <label>100,000.00</label>
-                                                    </td>
-                                                    <td data-name="ChequeNo">
-                                                        <input type="text" name='ChequeNo0' class="form-control border-input" />
-                                                    </td>
-
-                                                    <td data-name="ChequeDate">
-                                                        <input type="date" name='ChequeNo0' class="form-control border-input" />
-
-                                                    </td>
-                                                    <td data-name="Amount">
-                                                        <input type="number" name='ChequeNo0' class="form-control border-input" />
-                                                    </td>
-
-                                                    <td data-name="del">
-                                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="lblShowChequeAmountCashOut">
                                     <div class="col-md-12">
                                         <div class="col-md-9 text-right">
                                             <label>Total:</label>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>10,000.00</label>
+                                            <label id="lblCheckAmountCashOut">0.00</label>
                                         </div>
                                     </div>
                                 </div>
@@ -558,7 +424,7 @@
                                     <div class="col-md-12">
 
                                         <a id="add_rowBankDetailCashOut" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                        <a id="ClearAllBankDetailCashOut" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                        <a id="ClearAllBankDetailCashOut" onclick="show_confirm_RemoveAllRowsFromBankDetailCashOut();" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
                                         <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                                     </div>
                                 </div>
@@ -568,7 +434,7 @@
                         <div class="row">
                             <div class="container-fluid" style="padding-top: 3%;">
                                 <div class="col-md-12 text-right">
-                                    <button type="button" id="btnEditCashOut" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                                    <button type="button" id="btnEditCashOut" onclick="EnableCashOutVoucher();" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
                                     <button type="button" id="btnDeleteCashOut" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
                                     <button type="button" id="btnInActiveCashOut" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Void/InActive</button>
                                     <button type="button" id="btnSaveCashOut" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
@@ -583,71 +449,80 @@
             <div id="tabs_BankTransfer" class="tab-pane fade">
                 <div class="content">
                     <div class="container-fluid">
-
                         <div class="row" style="margin-top: 23px;">
                             <div class="col-md-12">
-                                <div class="form-group col-md-3">
-                                    <label>Payment Voucher</label>
-                                    <input type="text" class="form-control border-input" />
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label>Voucher Date</label>
-                                    <div class="input-wrapper">
-                                        <input type="text" placeholder="enter Voucher Date" class="form-control border-input " id="BankTransferVoucherDate" />
-                                        <label for="BankTransferVoucherDate" class="fa fa-calendar input-icon BankTransferVoucherDate"></label>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Payment Voucher</label>
+                                        <input type="text" id="txtBankTransferVoucher" class="form-control border-input" />
                                     </div>
+                                    <label id="lblErorBankTransferVoucher" style="color: red"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Voucher Date</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" placeholder="enter Voucher Date" class="form-control border-input datepicker " id="BankTransferVoucherDate" />
+                                        </div>
+                                    </div>
+                                    <label id="lblErorBankTransferVoucherDate" style="color: red"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-
-                                <div class="form-group col-md-3">
-                                    <label>Transfer Funds From</label>
-                                    <select id="ddltransferFrom" style="width: 100%" class="form-control border-input bank">
-                                        <option value="0">Select</option>
-                                        <option value="1">Meezan Bank</option>
-                                        <option value="2">HBL Bank</option>
-                                        <option value="3">Alfalah Bank</option>
-                                    </select>
+                                <div class="col-md-3">
+                                    <div class="form-group ">
+                                        <label>Transfer Funds From</label>
+                                        <select id="ddltransferFrom" style="width: 100%" class="form-control border-input bank">
+                                            <option value="0">Select</option>
+                                            <option value="1">100 | Meezan Bank</option>
+                                            <option value="2">101 | HBL Bank</option>
+                                            <option value="3">102 | Alfalah Bank</option>
+                                        </select>
+                                    </div>
+                                    <label id="lblErorBankTransferTo" style="color: red"></label>
+                                </div>
+                                <div class="form-group col-md-2" style="margin-top: 3%">
+                                    <label>Balance:</label>
+                                    <label id="lblBankTransferBalance">20,000.00</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Transfer Funds To</label>
+                                        <select id="ddltransferTo" style="width: 100%" class="form-control border-input bank">
+                                            <option value="0">Select</option>
+                                            <option value="1">100 | Meezan Bank</option>
+                                            <option value="2">101 | HBL Bank</option>
+                                            <option value="3">102 | Alfalah Bank</option>
+                                        </select>
+                                    </div>
+                                      <label id="lblErorBankTransferFrom" style="color: red"></label>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-3" style="margin-top: 3%">
                                     <label>Balance</label>
-                                    <label class="form-control border-input text-center">200,000.00</label>
-                                </div>
-
-
-
-                                <div class="form-group col-md-3">
-                                    <label>Transfer Funds To</label>
-                                    <select id="ddltransferTo" style="width: 100%" class="form-control border-input bank">
-                                        <option value="0">Select</option>
-                                        <option style="color: blue; font-weight: bold" value="-1">Add New Bank </option>
-                                        <option value="1">Meezan Bank</option>
-                                        <option value="2">HBL Bank</option>
-                                        <option value="3">Alfalah Bank</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label>Balance</label>
-                                    <label class="form-control border-input text-center">50,000.00</label>
+                                    <label>50,000.00</label>
                                 </div>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group col-md-3">
+                                <div class="col-md-3">
+                                <div class="form-group ">
                                     <label>Transfer Amount</label>
-                                    <input type="text" class="form-control border-input" />
+                                    <input type="number" id="txtTransferAmount" onkeyup="ValidateTransferAmountToBalance();" class="form-control border-input" />
                                 </div>
-
-                                <div class="form-group col-md-3">
+                                <label id="lblErorBankTransferAmount" style="color: red"></label>
+                                    </div>
+                                <div class="col-md-3">
+                                <div class="form-group ">
                                     <label>Memo</label>
-                                    <input type="text" class="form-control border-input" />
+                                    <input type="text" id="txtMemoBankTransfer" class="form-control border-input" />
                                 </div>
+                                    <label id="lblErorBankTransferMemo" style="color: red"></label>
+                                    </div>
                             </div>
                         </div>
 
@@ -661,7 +536,7 @@
                                             <thead>
 
                                                 <tr>
-                                                    <th>Cheque N0
+                                                    <th>Cheque No.
                                                     </th>
                                                     <th>Cheque Date
                                                     </th>
@@ -672,32 +547,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr id='addr0' data-id="0" class="hidden">
-                                                    <td data-name="ChequeNo">
-                                                        <input type="text" name='chequeNo' class="form-control" />
-                                                    </td>
-                                                    <td data-name="ChequeDate">
-                                                        <input type="date" name='chequeNo' class="form-control" />
-                                                    </td>
-                                                    <td data-name="Amount">
-                                                        <input type="number" name='Amount0' class="form-control" />
-                                                    </td>
-
-                                                    <td data-name="del">
-                                                        <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="div_ShowTotalBankTransfer">
                                     <div class="col-md-12">
-                                        <div class="col-md-7 text-right">
+                                        <div class="col-md-9 text-right">
                                             <label>Total:</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>10,000.00</label>
+                                        <div class="col-md-2  text-center">
+                                            <label id="lblTotalChequeAmount">0.00</label>
                                         </div>
                                     </div>
                                 </div>
@@ -705,7 +565,7 @@
                                     <div class="col-md-12">
 
                                         <a id="add_rowBankTransfer" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                        <a id="ClearAllBankTransfer" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
+                                        <a id="ClearAllBankTransfer" onclick="show_confirm_RemoveAllRowsFromBankTransfer();" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Clear All Lines</a>
                                         <!--<button type="button" style="float:right" class="btn btn-info btn-fill btn-wd ">Save</button>-->
                                     </div>
                                 </div>
@@ -715,7 +575,7 @@
                         <div class="row">
                             <div class="container-fluid" style="padding-top: 3%;">
                                 <div class="col-md-12 text-right">
-                                    <button type="button" id="btnEditBankTransfer" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                                    <button type="button" id="btnEditBankTransfer" onclick="EnableBankTransferVoucher();" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
                                     <button type="button" id="btnDeleteBankTransfer" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
                                     <button type="button" id="btnInActiveBankTransfer" style="display: none" class="btn btn-info btn-fill btn-sm btn-wd ">Void/InActive</button>
                                     <button type="button" id="btnSaveBankTransfer" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
@@ -727,14 +587,10 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-    <div id="BankModal" class="modal fade bd-example-modal-sm" role="dialog">
+    <div id="AddBank" class="modal fade bd-example-modal-sm" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -742,19 +598,23 @@
                     <h4 class="modal-title">New Bank</h4>
                 </div>
                 <div class="modal-body">
-
-                    <div class="form-group">
-                        <label>Bank </label>
-                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    <div class="row">
+                        <div class=" col-md-6 form-group">
+                            <label>Name </label>
+                            <input type="text" class="form-control border-input" />
+                        </div>
                     </div>
-
+                    <div class="row">
+                        <div class=" col-md-2 form-group">
+                            <a href="#" onclick="OpenAccountDeatil();" style="font-weight: bold;">+ Details</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
     <div id="AddCustomerModel" class="modal fade bd-example-modal-sm" role="dialog">
@@ -770,7 +630,7 @@
 
                     <div class="form-group">
                         <label>Name </label>
-                        <input type="text" style="width: 40%;" class="form-control border-input">
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
                     </div>
                     <div class="form-group">
                         <label>Type </label>
@@ -787,6 +647,69 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div id="AddAccount" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Account</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Account </label>
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="AddProject" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Project</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Project </label>
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="AddClass" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Class</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Class </label>
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true" data-backdrop="false">

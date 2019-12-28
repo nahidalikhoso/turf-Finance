@@ -197,18 +197,25 @@
                                     <div><hr /></div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="col-md-3">
+                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Name</label>
+                                                    <label>SKU **</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>SKU</label>
+                                                    <label>Name *</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
+                                             <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Description</label>
+                                                    <input type="text" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                           
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Catagory</label>
@@ -221,16 +228,17 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                              <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Initial Qty On Hand</label>
                                                     <input type="number" class="form-control border-input" />
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -241,15 +249,10 @@
                                         </div>
                                                 </div>
                                             </div>
+                                          
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Reorder Point</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Inventory Asset Account </label>
+                                                    <label>Inventory Asset Account * </label>
                                                     <select id="ddlAssetAccount" style="width:100%" class="form-control border-input Account">
                                                         <option value="0">Select</option>
                                                         <option value="1">Inventory</option>
@@ -259,21 +262,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Sales Price / Rate</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-
-
-
-                                            <div class="col-md-3">
+                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Income Account</label>
                                                     <select id="ddlInComeAccount" style="width:100%" class="form-control border-input Account">
@@ -286,47 +275,41 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                          
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Unit</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Sales Price / Rate</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
+
+
+                                           
                                             <!--<div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Purchase Description</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Unit</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                          
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Cost</label>
                                                     <input type="number" class="form-control border-input" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Expense Account</label>
-                                                    <select id="ddlExpenseAccount" style="width:100%" class="form-control border-input Account">
-                                                        <option value="0">Select</option>
-                                                        <option value="1">Expense</option>
-                                                        <option value="2">Cost Of Sales</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label> Description</label>
-                                                    <input type="text" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Preferred Supplier</label>
@@ -337,6 +320,15 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                           
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                          
                                           
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -344,25 +336,22 @@
                                                     <input type="file" class="form-control border-input" />
                                                 </div>
                                             </div>
-                                            <!--<div class="col-md-4 text-right">
-                                                <div class="form-group">
-                                                    <button type="button" style="margin-top:7%; display:none" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                                                    <button type="button" style="margin-top:7%; display:none" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                                            <div class="col-md-9 text-right " style="margin-top:4%">
+                                                 <div class="form-group">
+                                                    <button type="button" id="btnEditInventory" style="display:none"  class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                                                    <button type="button"id="btnDeleteInventory" style="display:none"  class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                                                    <button type="button" id="btnSaveInventory"  class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
                                                 </div>
-                                            </div>-->
-
+                                           
+                                            </div>
+                                      
 
 
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 text-right">
-                                                <div class="form-group">
-                                                    <button type="button" id="btnEditInventory" style="display:none"  class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                                                    <button type="button"id="btnDeleteInventory" style="display:none"  class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
-                                                    <button type="button" id="btnSaveInventory"  class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
-                                                </div>
-                                           
+                                               
                                         </div>
                                     </div>
 
@@ -385,16 +374,23 @@
                                         <div class="col-md-12">
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Name</label>
+                                                    <label>SKU **</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>SKU</label>
+                                                    <label>Name *</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
+                                               <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Description</label>
+                                                    <input type="text" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                            
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Catagory</label>
@@ -414,16 +410,29 @@
                                                 </div>
                                             </div>-->
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Sales Price/Rate</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
+                                             <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Unit</label>
+                                                    <input type="text" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                             <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Sales Price / Rate</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                              <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Cost</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Income Account</label>
@@ -443,24 +452,9 @@
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Unit</label>
-                                                    <input type="text" class="form-control border-input" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Cost</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label> Description</label>
-                                                    <input type="text" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                           
+                                          
+                                         
 
 
                                         </div>
@@ -526,18 +520,26 @@
                                     <div><hr /></div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="col-md-3">
+                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>Name</label>
+                                                    <label>SKU **</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>SKU</label>
+                                                    <label>Name *</label>
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>
+
+                                             <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Description</label>
+                                                    <input type="text" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                           
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Catagory</label>
@@ -557,16 +559,32 @@
                                                 </div>
                                             </div>-->
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Sales Price/Rate</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Unit</label>
+                                                    <input type="text" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                             <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Sales Price / Rate</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Cost</label>
+                                                    <input type="number" class="form-control border-input" />
+                                                </div>
+                                            </div>
+                                           
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Income Account</label>
@@ -586,24 +604,7 @@
                                                     <input type="text" class="form-control border-input" />
                                                 </div>
                                             </div>-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Unit</label>
-                                                    <input type="text" class="form-control border-input" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Cost</label>
-                                                    <input type="number" class="form-control border-input" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label> Description</label>
-                                                    <input type="text" class="form-control border-input" />
-                                                </div>
-                                            </div>
+                                        
 
 
                                         </div>

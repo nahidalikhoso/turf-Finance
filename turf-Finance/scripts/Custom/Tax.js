@@ -1,5 +1,8 @@
 ﻿
 $(document).ready(function () {
+    
+  
+    $('#overlay').fadeIn();
     $(".select2").select2();
     $('#ddSelectTax').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
@@ -12,86 +15,6 @@ $(document).ready(function () {
                     });
         }
     });
-
-    
-
-           let simplepicker = new SimplePicker(".datePickStart");
-           let simplepicker2 = new SimplePicker(".datePickEnd");
-           let simplepicker3 = new SimplePicker(".datePickVoucherDate");
-    
-           let simplepicker4 = new SimplePicker(".datePickStartTaxList");
-           let simplepicker5 = new SimplePicker(".datePickEndTaxList");
-           
-           $("#datePickStart").focus(function () {
-               simplepicker.open('');
-               simplepicker.disableTimeSection();
-               $("#datePickStart").attr('readonly', 'true');
-           });
-           simplepicker.on('submit', (date) => {
-               $("#datePickStart").prop('readonly', false);
-               $("#datePickStart")[0].value = formatDate(date);
-           });
-           simplepicker.on('close', function () {
-
-               $("#datePickStart").removeAttr('readonly');
-           });
-           $("#datePickEnd").focus(function () {
-               simplepicker2.open();
-               simplepicker2.disableTimeSection();
-               $("#datePickEnd").attr('readonly', 'true');
-           });
-           simplepicker2.on('submit', (date) => {
-               $("#datePickEnd")[0].value = formatDate(date);
-               $("#datePickEnd").prop('readonly', false);
-           });
-           simplepicker2.on('close', function () {
-
-               $("#datePickEnd").removeAttr('readonly');
-           });
-
-           $("#datePickVoucherDate").focus(function () {
-               simplepicker3.open();
-               simplepicker3.disableTimeSection();
-               $("#datePickVoucherDate").attr('readonly', 'true');
-           });
-           simplepicker3.on('submit', (date) => {
-               $("#datePickVoucherDate")[0].value = formatDate(date);
-               $("#datePickVoucherDate").prop('readonly', false);
-           });
-           simplepicker3.on('close', function () {
-
-               $("#datePickVoucherDate").removeAttr('readonly');
-           });
-
-
-           $("#datePickStartTaxList").focus(function () {
-               simplepicker4.open('');
-               simplepicker4.disableTimeSection();
-               $("#datePickStartTaxList").attr('readonly', 'true');
-           });
-           simplepicker4.on('submit', (date) => {
-               $("#datePickStartTaxList").prop('readonly', false);
-               $("#datePickStartTaxList")[0].value = formatDate(date);
-           });
-           simplepicker4.on('close', function () {
-
-               $("#datePickStartTaxList").removeAttr('readonly');
-           });
-           $("#datePickEndTaxList").focus(function () {
-               simplepicker5.open();
-               simplepicker5.disableTimeSection();
-               $("#datePickEndTaxList").attr('readonly', 'true');
-           });
-           simplepicker5.on('submit', (date) => {
-               $("#datePickEndTaxList")[0].value = formatDate(date);
-               $("#datePickEndTaxList").prop('readonly', false);
-           });
-           simplepicker5.on('close', function () {
-
-               $("#datePickEndTaxList").removeAttr('readonly');
-           });
-
-
            $('#tblTaxList tbody').on('click', 'tr td:eq(1)', function () {
                jQuery('#TaxList').hide();
                $("#btnEditTaxPayment").show();
@@ -271,8 +194,12 @@ $(document).ready(function () {
            ClickCheckBoxTaxList();
 
           
-            
 
+           var params = getUrlParameter('Param');
+           if (params) {
+               AddNewTax();
+           }
+           $('#overlay').fadeOut();
        });
        function formatDate(date) {
            var d = new Date(date),
@@ -319,7 +246,7 @@ function AllNotReceivedTaxVoucher() {
 }
 
 function AddRow_TaxComponent() {
-    debugger
+    
     var newid = 1;
     $.each($("#tblTaxRate tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -370,7 +297,7 @@ function AddRow_TaxComponent() {
 }
 function AddRow_TaxComponentOnClick() {
     $("#add_rowTaxComponent").on("click", function () {
-        debugger
+        
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -426,7 +353,7 @@ function AddRow_TaxComponentOnClick() {
 }
 
 function AddRow_TaxComponentOnEdit() {
-    debugger
+    
     var newid = 1;
     $.each($("#tblTaxRateOnEdit tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -477,7 +404,7 @@ function AddRow_TaxComponentOnEdit() {
 }
 function AddRow_TaxComponentEditOnClick() {
     $("#add_rowTaxComponentOnEdit").on("click", function () {
-        debugger
+        
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -533,7 +460,7 @@ function AddRow_TaxComponentEditOnClick() {
 }
   
 function AddRow_Bank() {
-    debugger
+    
     var newid = 1;
     $.each($("#tab_BankDetail tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -584,7 +511,7 @@ function AddRow_Bank() {
 }
 function AddRowBankDetail() {
     $("#add_rowBankDetail").on("click", function () {
-        debugger
+        
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -640,7 +567,7 @@ function AddRowBankDetail() {
 }
 
 function AddRow_BankOnEdit() {
-    debugger
+    
     var newid = 1;
     $.each($("#tab_BankDetailOnEdit tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -691,7 +618,7 @@ function AddRow_BankOnEdit() {
 }
 function AddRowBankDetailOnEdit() {
     $("#add_rowBankDetailOnEdit").on("click", function () {
-        debugger
+        
         // Dynamic Rows Code
 
         // Get max row id and set new id

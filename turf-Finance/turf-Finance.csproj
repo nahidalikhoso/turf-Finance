@@ -96,6 +96,51 @@
   <ItemGroup>
     <Content Include="Accounting.aspx" />
     <Content Include="Approvel.aspx" />
+    <Content Include="assets\css\DataTable\buttons.dataTables.min.css" />
+    <Content Include="assets\css\fonts.css" />
+    <Content Include="assets\css\bootstrap-datepicker.css" />
+    <Content Include="assets\css\gijgo.min.css" />
+    <Content Include="assets\img\loading-31.gif" />
+    <Content Include="assets\js\bootstrap-datepicker.js" />
+    <Content Include="assets\js\gijgo.min.js" />
+    <Content Include="assets\js\sweetalert.min.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.da.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.de.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.el.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.es.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.he.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.id.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.is.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.it.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.th.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="assets\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Bank.aspx" />
     <Content Include="JournalEntry.aspx" />
     <Content Include="packages.config" />
@@ -136,12 +181,13 @@
     <Content Include="assets\sass\paper\_variables.scss" />
     <Content Include="assets\css\.DS_Store" />
     <Content Include="assets\js\.DS_Store" />
-    <Content Include="CheckDateExample.Master" />
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\gijgo-material.woff" />
+    <Content Include="assets\fonts\gijgo-material.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,14 +205,10 @@
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\editor.dataTables.min.css" />
     <Content Include="assets\css\font-awesome.min.css" />
-    <Content Include="assets\css\fonts.css" />
-    <Content Include="assets\css\FooPicker.css" />
-    <Content Include="assets\css\gijgo.min.css" />
     <Content Include="assets\css\jquery.dataTables.min.css" />
     <Content Include="assets\css\Myjquery.dataTables.min.css" />
     <Content Include="assets\css\paper-dashboard.css" />
     <Content Include="assets\css\select2.css" />
-    <Content Include="assets\css\simplepicker.css" />
     <Content Include="assets\css\themify-icons.css" />
     <Content Include="assets\Custom\StyleSheet.css" />
     <Content Include="assets\fonts\themify.svg" />
@@ -195,14 +237,13 @@
     <Content Include="assets\js\jquery.dataTables.min.js" />
     <Content Include="assets\js\paper-dashboard.js" />
     <Content Include="assets\js\select2.min.js" />
-    <Content Include="assets\js\simplepicker.js" />
-    <Content Include="CheckDatePicker.aspx" />
     <Content Include="Expense.aspx" />
     <Content Include="PettyCash.aspx" />
     <Content Include="ProductAndServices.aspx" />
     <Content Include="Sale.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\bootstrap-datepicker.js" />
     <Content Include="scripts\Custom\Accounting.js" />
     <Content Include="scripts\Custom\Approvel.js" />
     <Content Include="scripts\Custom\Bank.js" />
@@ -214,7 +255,6 @@
     <Content Include="scripts\Custom\Sale.js" />
     <Content Include="scripts\Custom\Tax.js" />
     <Content Include="scripts\ellipsis.js" />
-    <Content Include="select2.aspx" />
     <Content Include="Tax.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -239,20 +279,6 @@
     </Compile>
     <Compile Include="Bank.aspx.designer.cs">
       <DependentUpon>Bank.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CheckDateExample.Master.cs">
-      <DependentUpon>CheckDateExample.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckDateExample.Master.designer.cs">
-      <DependentUpon>CheckDateExample.Master</DependentUpon>
-    </Compile>
-    <Compile Include="CheckDatePicker.aspx.cs">
-      <DependentUpon>CheckDatePicker.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CheckDatePicker.aspx.designer.cs">
-      <DependentUpon>CheckDatePicker.aspx</DependentUpon>
     </Compile>
     <Compile Include="Expense.aspx.cs">
       <DependentUpon>Expense.aspx</DependentUpon>
@@ -296,13 +322,6 @@
     </Compile>
     <Compile Include="Sale.aspx.designer.cs">
       <DependentUpon>Sale.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="select2.aspx.cs">
-      <DependentUpon>select2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="select2.aspx.designer.cs">
-      <DependentUpon>select2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tax.aspx.cs">
       <DependentUpon>Tax.aspx</DependentUpon>

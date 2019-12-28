@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    $('#overlay').fadeIn();
     $('.selectVendorOrCustomer').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
         if (!$('.select2-link').length) {
@@ -10,35 +10,6 @@
                         $('#AddVenderModel').modal();
                     });
         }
-    });
-
-    let simplepicker = new SimplePicker(".datePickStart");
-    let simplepicker2 = new SimplePicker(".datePickEnd");
-    $("#datePickStart").focus(function () {
-        simplepicker.open('');
-        simplepicker.disableTimeSection();
-        $("#datePickStart").attr('readonly', 'true');
-    });
-    simplepicker.on('submit', (date) => {
-        $("#datePickStart").prop('readonly', false);
-        $("#datePickStart")[0].value = formatDate(date);
-    });
-    simplepicker.on('close', function () {
-
-        $("#datePickStart").removeAttr('readonly');
-    });
-    $("#datePickEnd").focus(function () {
-        simplepicker2.open();
-        simplepicker2.disableTimeSection();
-        $("#datePickEnd").attr('readonly', 'true');
-    });
-    simplepicker2.on('submit', (date) => {
-        $("#datePickEnd")[0].value = formatDate(date);
-        $("#datePickEnd").prop('readonly', false);
-    });
-    simplepicker2.on('close', function () {
-
-        $("#datePickEnd").removeAttr('readonly');
     });
     $("#tblExpenseList").DataTable({
 
@@ -65,6 +36,7 @@
     $("#div_ExpenseList").hide();
     $("#div_ddlvendor").hide();
     ClickCheckBox();
+    $('#overlay').fadeOut();
 });
 function ClickCheckBox() {
     var $Pay = $("#btnApprove").hide(),

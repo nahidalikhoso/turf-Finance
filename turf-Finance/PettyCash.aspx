@@ -3,6 +3,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
     <script src="scripts/Custom/PettyCash.js"></script>
+    <style>
+        
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            text-align: right;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
 
@@ -23,8 +35,7 @@
                                         </div>
                                         <div class="col-md-3 PaddingClass">
                                             <div class="input-wrapper">
-                                                <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStart" />
-                                                <label for="datePickstart" class="fa fa-calendar input-icon datePickStart"></label>
+                                                <input type="text" placeholder="enter Start Date" autocomplete="off" class="form-control border-input datepicker" id="datePickStart" />
                                             </div>
                                         </div>
                                         <div class="col-md-2 text-right  PaddingClass ">
@@ -32,25 +43,24 @@
                                         </div>
                                         <div class="col-md-3 PaddingClass">
                                             <div class="input-wrapper">
-                                                <input type="text" placeholder="enter End Date"  class="form-control border-input" id="datePickEnd" />
-                                                <label for="datePickEnd" class="fa fa-calendar input-icon datePickEnd"></label>
+                                                <input type="text" placeholder="enter End Date" autocomplete="off" class="form-control border-input datepicker" id="datePickEnd" />
+                                               
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <button type="button" class="btn btn-success btn-fill">Export</button>
-                                    <button type="button" class="btn btn-success btn-fill">Print</button>
-                                    <button type="button" id="btnAddNewInvoice" class="btn btn-success btn-fill" onclick="openPettyCashVoucher();">Add New Petty Cash</button>
+                                <div class="col-md-4 text-right">
+                                
+                                    <button type="button" id="btnAddNewInvoice" class="btn btn-success btn-fill" onclick="openPettyCashVoucher();">Add</button>
                                 </div>
 
                             </div>
                         </div>
                         <hr />
-                        <div id="div_DemoGrid" class="row">
+                        <div id="div_tbl_PettyCashList" class="row">
                             <div class="col-md-12">
-                                <table id="demoGrid" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
+                                <table id="tbl_PettyCashList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                     <thead>
                                         <tr style="border-top: hidden;">
                                             <th>Voucher No</th>
@@ -112,7 +122,7 @@
                             <h4 class="title">Petty Cash Voucher </h4>
                         </div>
                         <div class="col-md-4" style="padding-top: 3%;">
-                            <a id="ClosePettyCashVoucher" style="float: right;" onclick="show_confirm('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                            <a id="ClosePettyCashVoucher" style="float: right;" onclick="show_confirm_LeaveWithoutSavingPettyCash('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
@@ -125,15 +135,15 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Voucher No </label>
-                                <input type="text" class="form-control border-input" />
+                                <input type="text" id="txtVoucherNo" class="form-control border-input" />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Voucher Date </label>
                                 <div class="input-wrapper">
-                                    <input type="text" placeholder="Enter Voucher Date" id="VoucherDate" class="form-control border-input " />
-                                    <label for="VoucherDate" class="fa fa-calendar input-icon voucherDate"></label>
+                                    <input type="text" placeholder="Enter Voucher Date" id="VoucherDate" class="form-control border-input datepicker  " />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -162,62 +172,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr id='addr0' data-id="0" class="hidden">
-                                            <td data-name="sel">
-                                                <div id="Acount">
-                                                    <select id="AddTax" class="formControl important borderInput select ">
-                                                        <option value="0">-Select-</option>
-                                                        <!--<option style="color:blue;font-weight:bold" value="-1">Add New</option>-->
-                                                        <option value="1">GST</option>
-                                                        <option value="2">WHT</option>
-                                                        <option value="3">Further GST</option>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td data-name="Amount">
-                                                <input type="number" name='Amount0' class="form-control txtAmount" onkeyup="sumAmount()" />
-                                            </td>
-                                            <td data-name="Memo">
-                                                <input type="text" name='Memo0' class="form-control" />
-                                            </td>
-                                            <td data-name="sel">
-                                                <div id="Class">
-                                                    <select id="ddlClass" name="Class0" class="form-control">
-                                                        <option value="0">Select</option>
-                                                        <option value="1">Class1</option>
-                                                        <option value="2">Class2</option>
-                                                        <option value="3">Class3</option>
-                                                    </select>
-
-                                                </div>
-                                            </td>
-                                            <td data-name="sel">
-                                                <div id="project">
-                                                <select id="ddlProject" name="Project0" class="form-control " >
-                                                    <option value="0">Select</option>
-                                                    <option value="1">Project1</option>
-                                                    <option value="2">Project2</option>
-                                                    <option value="3">Project3</option>
-                                                </select>
-                                                    </div>
-                                            </td>
-                                            <td data-name="del">
-                                                <button class='btn btn-danger glyphicon   row-remove' style="background-color: white; color: black; border: none;"><span aria-hidden="true">×</span></button>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Total <span id="spnTotal">0</span></label>
-                            </div>
+                        <div class="row" id="div_totalAmount">
+                           
+                                <div class="col-md-3 text-right"><label>Total:</label></div>
+                                <div class="col-md-2 text-center"><label id="lblTotalAmount">0.00</label></div>
+                        
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                <button type="button" id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="ClearAllRow()">Clear All Lines</button>
+                                <div class="col-md-5">
+                                    <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
+                                <button type="button" id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="show_confirm_RemoveAllRowsFromPettyCash()">Clear All Lines</button>
+                                </div>
+                                <div class="col-md-7 text-right">
+                                              <button type="button" onclick="EnablePettyCashVoucher();" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                            <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                                </div>
+                                
+                       
                             </div>
                         </div>
                     </div>
@@ -225,9 +203,7 @@
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12 text-right">
-                            <button type="button" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                            <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
-                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                           
                         </div>
                     </div>
                 </div>
@@ -273,4 +249,10 @@
             </div>
         </div>
     </div>
+    
+  <%--  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+   --%>
+   
 </asp:Content>
