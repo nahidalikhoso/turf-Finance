@@ -159,15 +159,15 @@
                                         <tr>
                                             <th>Account
                                             </th>
-                                            <th>Amount
+                                            <th style="width:20%">Amount
                                             </th>
-                                            <th>Memo
+                                            <th >Memo
                                             </th>
                                             <th>Class
                                             </th>
                                             <th>Project
                                             </th>
-                                            <th>Remove
+                                            <th style="width:10%">Remove
                                             </th>
                                         </tr>
                                     </thead>

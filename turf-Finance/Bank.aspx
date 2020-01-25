@@ -66,7 +66,7 @@
                                 <div class="col-md-3" style="margin-top: 3%;">
                                     <div class="form-group">
 
-                                        <label>Bank Balance :</label>
+                                        <label> Balance :</label>
                                         <label>10,000.00</label>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
 
                         <hr />
                         <div class="row">
-                            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                            <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>--%>
                             <div class="container" style="width: 100%;">
                                 <div class="row clearfix">
                                     <div class="col-md-12 table-responsive">
@@ -229,7 +229,7 @@
                         </div>
 
                         <div class="row" style="margin-top: 23px;">
-                            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                            <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>--%>
                             <div class="container" style="width: 100%;">
                                 <div class="row clearfix">
                                     <div class="col-md-12 table-responsive">
@@ -333,7 +333,7 @@
 
                         <hr />
                         <div class="row">
-                            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                            <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>--%>
                             <div class="container" style="width: 100%;">
                                 <div class="row clearfix">
                                     <div class="col-md-12 table-responsive">
@@ -383,7 +383,7 @@
                         </div>
 
                         <div class="row" style="margin-top: 23px;">
-                            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                            <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>--%>
                             <div class="container" style="width: 100%;">
                                 <div class="row clearfix">
                                     <div class="col-md-12 table-responsive">
@@ -528,7 +528,7 @@
 
                         <hr />
                         <div class="row">
-                            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+                            <%--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>--%>
                             <div class="container" style="width: 100%;">
                                 <div class="row clearfix">
                                     <div class="col-md-12 table-responsive">

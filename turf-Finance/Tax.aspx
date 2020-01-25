@@ -42,8 +42,8 @@
                                         <div class="form-group col-md-4">
                                             <label class="Label">Start Date:</label>
                                             <div class="input-wrapper">
-                                                <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStart" />
-                                                <label for="datePickstart" class="fa fa-calendar input-icon datePickStart"></label>
+                                                <input type="text" placeholder="enter Start Date" id="datePickStart" class="form-control border-input datepicker"  />
+                                                
                                             </div>
                                         </div>
                                         <div class="form-group col-md-4">

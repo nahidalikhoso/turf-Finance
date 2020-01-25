@@ -4,6 +4,17 @@
 
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
     <script src="scripts/Custom/Accounting.js"></script>
+        <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            text-align: right;
+        }
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -26,8 +37,8 @@
                                     </div>
                                     <div class="col-md-3 text-left PaddingClass">
                                         <div class="input-wrapper">
-                                            <input type="text" placeholder="enter Start Date" class="form-control border-input" id="datePickStart" />
-                                            <label for="datePickstart" class="fa fa-calendar input-icon datePickStart"></label>
+                                            <input type="text" placeholder="enter Start Date" class="form-control border-input datepicker " id="datePickStart" />
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-2 labelWidth  PaddingClass ">
@@ -35,17 +46,26 @@
                                     </div>
                                     <div class="col-md-3 PaddingClass">
                                         <div class="input-wrapper">
-                                            <input type="text" placeholder="enter End Date" class="form-control border-input" id="datePickEnd" />
-                                            <label for="datePickEnd" class="fa fa-calendar input-icon datePickEnd"></label>
+                                            <input type="text" placeholder="enter End Date" class="form-control border-input datepicker " id="datePickEnd" />
+                                            
                                         </div>
                                     </div>
+                                                                 <div class="col-md-2">
+                                    <div class="form-group ">
+
+<%--                                        <button type="button" class="btn btn-success btn-fill">Export</button>
+                                        <button type="button" class="btn btn-success btn-fill">Print</button>--%>
+                                        <button type="button" id="btnFetch" onclick="GatAccountData();" class="btn btn-success btn-fill">Fetch</button>
+                                    </div>
                                 </div>
+                                </div>
+                
 
                                 <div class="col-md-4">
                                     <div class="form-group text-right">
 
-                                        <button type="button" class="btn btn-success btn-fill">Export</button>
-                                        <button type="button" class="btn btn-success btn-fill">Print</button>
+<%--                                        <button type="button" class="btn btn-success btn-fill">Export</button>
+                                        <button type="button" class="btn btn-success btn-fill">Print</button>--%>
                                         <button type="button" id="btnAddNewAccount" class="btn btn-success btn-fill" onclick="OpenAccountPage();">Add New Account</button>
                                     </div>
                                 </div>
@@ -58,44 +78,14 @@
                                 <table id="tblAccountList" class="display  table-bordered" style="border-top: hidden!important; border-right: none; border-left: none; width: 100%">
                                     <thead>
                                         <tr style="border-top: hidden;">
+                                            <th>Account Type</th>
                                             <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Detail Type</th>
-                                            <th>Bank Balance</th>
+                                            <th>Code</th>
+                                            <th>Description</th>
+                                             <th>Balance</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Cash and cash equivalents</td>
-                                            <td>Cash and cash equivalents</td>
-                                            <td>Cash and cash equivalents</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Inventory</td>
-                                            <td>Current Assets</td>
-                                            <td>Inventory</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sales</td>
-                                            <td>Income</td>
-                                            <td>Sales of Product InCome</td>
-                                            <td></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Office Expense</td>
-                                            <td>Expense</td>
-                                            <td>Office/general administrative expenses </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Office Expense</td>
-                                            <td>Expense</td>
-                                            <td>Office/general administrative expenses </td>
-                                            <td></td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -221,7 +211,7 @@
                             <h4 class="title">Account </h4>
                         </div>
                         <div class="col-md-4 text-right" style="padding-top: 3%;">
-                            <a id="NewAccountForm" onclick="show_confirmAccount('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
+                            <a id="NewAccountForm" onclick="show_confirm_LeaveWithoutSavingAccount('Do You Want To Leave Without Saving')"><i class="fa fa-times fa-lg"></i></a>
                             <!--<button style="float:right" class="title" type="button"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
@@ -229,6 +219,7 @@
                 <div>
                     <hr />
                 </div>
+                <input type="hidden" id="hdnUserID" value="" />
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-3">
@@ -236,16 +227,6 @@
                                 <label>Account Type</label>
 
                                 <select id="ddlAccountType" class="form-control border-input select2">
-                                    <option value="0">Select</option>
-                                    <optgroup label="Assets" class="form-control">
-                                        <option value="1">Current Asset</option>
-                                        <option value="2">Fixed Asset</option>
-                                        <option value="3">Inventory</option>
-                                    </optgroup>
-                                    <optgroup label="Equity" class="form-control">
-                                        <option value="4">Equity</option>
-
-                                    </optgroup>
 
                                 </select>
                             </div>
@@ -253,19 +234,19 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Code</label>
-                                <input type="text" class="form-control border-input" />
+                                <input type="text" id="txtAccountCode" oninput="AlphaNumericOnly(this.id);" class="form-control border-input" />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control border-input" />
+                                <input type="text" id="txtAccountName" oninput="AlphaNumericOnly(this.id);" class="form-control border-input" />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Description</label>
-                                <input type="text" class="form-control border-input" />
+                                <input type="text" id="txtAccountDesc" class="form-control border-input" />
                             </div>
                         </div>
                     </div>
@@ -280,33 +261,33 @@
                         </div>-->
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="checkbox" id="chkSubAccount" />
-                                <label>Is sub Account</label>
 
+                                 <label>Optional</label>
+                               <span class="form-control border-input"> <input type="checkbox" id="chkSubAccount"/> <span> Is Sub Account</span></span> 
+                               
+                            </div>
+                        </div>
+                         <div class="col-md-3">
+                            <div class="form-group">
+                                
+                                <label>Sub Account</label>
                                 <select id="ddlParentAccount" class="form-control border-input select2">
-                                    <option value="0">Enter Parent Account</option>
-                                    <option value="1">Current Assets</option>
-                                    <option value="2">Fixed Assets</option>
-                                    <option value="3">Accounts Payable A/P</option>
-
-                                    <option value="1">InCome</option>
-                                    <option value="2">Expense</option>
-                                    <option value="3">Owner's Equity</option>
+                                 
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Balance</label>
-                                <input type="number" class="form-control border-input text-right" />
+                                <input type="number" oninput="PositiveNumer(this.id)" id="txtBalance" onkeyup="AccountBalance();" class="form-control border-input text-right" />
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>As of</label>
                                 <div class="input-wrapper">
-                                    <input type="text" placeholder="enter As of Date" class="form-control border-input" id="AsOFDate" />
-                                    <label for="AsOFDate" class="fa fa-calendar input-icon AsOFDate"></label>
+                                    <input type="text" placeholder="enter As of Date" class="form-control border-input datepicker" id="AsOFDate" />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -317,8 +298,8 @@
                         <div class="col-md-12 text-right">
 
                             <button type="button" id="btnInActive" class="btn btn-info btn-fill btn-sm btn-wd ">InActive</button>
-                            <button type="button" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                            <button type="button" id="btnEdit" onclick="EnableAccountVoucher();" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                            <button type="button" id="btnSave" onclick="ValidateAccount();" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
 
                         </div>
                     </div>

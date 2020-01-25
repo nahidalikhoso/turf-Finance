@@ -1,8 +1,7 @@
 ﻿
 $(document).ready(function () {
-    
-  
     $('#overlay').fadeIn();
+  
     $(".select2").select2();
     $('#ddSelectTax').select2({}).on('select2:open', function () {
         var a = $(this).data('select2');
@@ -15,205 +14,213 @@ $(document).ready(function () {
                     });
         }
     });
-           $('#tblTaxList tbody').on('click', 'tr td:eq(1)', function () {
-               jQuery('#TaxList').hide();
-               $("#btnEditTaxPayment").show();
-               $("#btnDeleteTaxPayment").show();
-               $("#btnInActiveTaxPayment").show();
-               $("#TaxPaymentVoucher").show();
-               // jQuery('#ExpenseVoucherEdit').show();
-           });
-           $('#tblTaxList tbody').on('click', 'tr:eq(3) td:eq(1)', function () {
-               jQuery('#TaxList').hide();
-               $("#btnEditTaxReceived").show();
-               $("#btnDeleteTaxReceived").show();
-               $("#btnInActiveTaxReceived").show();
-               $("#TaxReceiveVoucher").show();
-               // jQuery('#ExpenseVoucherEdit').show();
-           });
-           $('#demoGridForTaxList tbody').on('click', 'tr td:eq(1)', function () {
-               $("#NewTaxRate").show();
-               jQuery('#TaxList').hide();
-               
-           });
+    $('#tblTaxList tbody').on('click', 'tr td:eq(1)', function () {
+        jQuery('#TaxList').hide();
+        $("#btnEditTaxPayment").show();
+        $("#btnDeleteTaxPayment").show();
+        $("#btnInActiveTaxPayment").show();
+        $("#TaxPaymentVoucher").show();
+        // jQuery('#ExpenseVoucherEdit').show();
+    });
+    $('#tblTaxList tbody').on('click', 'tr:eq(3) td:eq(1)', function () {
+        jQuery('#TaxList').hide();
+        $("#btnEditTaxReceived").show();
+        $("#btnDeleteTaxReceived").show();
+        $("#btnInActiveTaxReceived").show();
+        $("#TaxReceiveVoucher").show();
+        // jQuery('#ExpenseVoucherEdit').show();
+    });
+    $('#demoGridForTaxList tbody').on('click', 'tr td:eq(1)', function () {
+        $("#NewTaxRate").show();
+        jQuery('#TaxList').hide();
 
-           $("#div_UnpaidTaxList").hide();
-           $("#div_NotReceivedTaxList").hide();
-           $("#TaxPaymentVoucher").hide();
-           $("#TaxReceiveVoucher").hide();
-           $("#NewTaxRate").hide();
-           $("#btnTaxPayment").hide()
-           $("#btnPay").hide();
-           $("#btnReceive").hide();
-           $("#tblTaxList").DataTable({
-               columnDefs: [{
-                   targets: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                   render: $.fn.dataTable.render.ellipsis(7)
-               }],
-               pageLength: '4',
-               "filter": true, // this is for disable filter (search box)
-               "order": [[3, "desc"]],
-               "pagingType": "full_numbers",
-           });
-           $("#tblUnpaidTaxList").DataTable({
-               columnDefs: [{
-                   targets: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-                   render: $.fn.dataTable.render.ellipsis(7)
-               }],
-               pageLength: '4',
-               "filter": true, // this is for disable filter (search box)
-               "order": [[3, "desc"]],
-               "pagingType": "full_numbers",
-           });
-           $("#tblNotReceivedTaxList").DataTable({
-               columnDefs: [{
-                   targets: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-                   render: $.fn.dataTable.render.ellipsis(7)
-               }],
-               pageLength: '4',
-               "filter": true, // this is for disable filter (search box)
-               "order": [[3, "desc"]],
-               "pagingType": "full_numbers",
-           });
+    });
 
-           $("#tblPayTaxList").DataTable({
+    $("#div_UnpaidTaxList").hide();
+    $("#div_NotReceivedTaxList").hide();
+    $("#TaxPaymentVoucher").hide();
+    $("#TaxReceiveVoucher").hide();
+    $("#NewTaxRate").hide();
+    $("#btnTaxPayment").hide()
+    $("#btnPay").hide();
+    $("#btnReceive").hide();
+    $("#tblTaxList").DataTable({
+        columnDefs: [{
+            targets: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+            render: $.fn.dataTable.render.ellipsis(7)
+        }],
+        pageLength: '4',
+        "filter": true, // this is for disable filter (search box)
+        "order": [[3, "desc"]],
+        "pagingType": "full_numbers",
+    });
+    $("#tblUnpaidTaxList").DataTable({
+        columnDefs: [{
+            targets: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            render: $.fn.dataTable.render.ellipsis(7)
+        }],
+        pageLength: '4',
+        "filter": true, // this is for disable filter (search box)
+        "order": [[3, "desc"]],
+        "pagingType": "full_numbers",
+    });
+    $("#tblNotReceivedTaxList").DataTable({
+        columnDefs: [{
+            targets: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            render: $.fn.dataTable.render.ellipsis(7)
+        }],
+        pageLength: '4',
+        "filter": true, // this is for disable filter (search box)
+        "order": [[3, "desc"]],
+        "pagingType": "full_numbers",
+    });
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    $("#tblPayTaxList").DataTable({
 
-           });
-           $("#tblReceiveTaxList").DataTable({
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    });
+    $("#tblReceiveTaxList").DataTable({
 
-           });
-           $("#tblReceiveTaxListOnEdit").DataTable({
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    });
+    $("#tblReceiveTaxListOnEdit").DataTable({
 
-           });
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-           $("#tblPayTaxListOnEdit").DataTable({
+    });
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    $("#tblPayTaxListOnEdit").DataTable({
 
-           });
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
+
+    });
 
 
-            
-           $("#tab_BankDetail").DataTable({
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    $("#tab_BankDetail").DataTable({
 
-           });
-           $("#tab_BankDetailOnEdit").DataTable({
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    });
+    $("#tab_BankDetailOnEdit").DataTable({
 
-           });
-           $("#tblTaxRate").DataTable({
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    });
+    $("#tblTaxRate").DataTable({
 
-           });
-           $("#tblTaxRateOnEdit").DataTable({
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-               "ordering": false,
-               "paging": false,
-               "bInfo": false,
-               "searching": false
+    });
+    $("#tblTaxRateOnEdit").DataTable({
 
-           });
-            
+        "ordering": false,
+        "paging": false,
+        "bInfo": false,
+        "searching": false
 
-           $("#TaxBalance").DataTable({
+    });
 
-               fixedHeader: {
-                   header: true,
-                   headerOffset: 45,
-               },
-               // scrollX: true,
-               pageLength: '4',
-               // this is for disable filter (search box)
 
-               "searching": false,
-               "bInfo": false,
-               "paging": true,
-               //"scrollY": 100
+    $("#TaxBalance").DataTable({
 
-           });
-           $("#demoGridForTaxList").DataTable({
-               fixedHeader: {
-                   header: true,
-                   headerOffset: 45,
-               },
-               scrollX: true,
-               columnDefs: [{
-                   targets: [1, 2, 3, 4, 5, 6, 7, 8],
-                   render: $.fn.dataTable.render.ellipsis(8)
-               }],
-               pageLength: '4',
-               //  "filter": true, // this is for disable filter (search box)
-               "order": [[3, "desc"]],
-               "bInfo": false,
-               "paging": true,
-               "scrollY": 200
-           });
+        fixedHeader: {
+            header: true,
+            headerOffset: 45,
+        },
+        // scrollX: true,
+        pageLength: '4',
+        // this is for disable filter (search box)
 
-            
-           AddRow_TaxComponent();
-           AddRow_TaxComponentOnClick();
+        "searching": false,
+        "bInfo": false,
+        "paging": true,
+        //"scrollY": 100
 
-           AddRow_TaxComponentOnEdit();
-           AddRow_TaxComponentEditOnClick();
-           AddRow_Bank();
-           AddRowBankDetail();
+    });
+    $("#demoGridForTaxList").DataTable({
+        fixedHeader: {
+            header: true,
+            headerOffset: 45,
+        },
+        scrollX: true,
+        columnDefs: [{
+            targets: [1, 2, 3, 4, 5, 6, 7, 8],
+            render: $.fn.dataTable.render.ellipsis(8)
+        }],
+        pageLength: '4',
+        //  "filter": true, // this is for disable filter (search box)
+        "order": [[3, "desc"]],
+        "bInfo": false,
+        "paging": true,
+        "scrollY": 200
+    });
 
-           AddRow_BankOnEdit();
-           AddRowBankDetailOnEdit();
-           ClickCheckBoxTaxList();
 
-          
+    AddRow_TaxComponent();
+    AddRow_TaxComponentOnClick();
 
-           var params = getUrlParameter('Param');
-           if (params) {
-               AddNewTax();
-           }
-           $('#overlay').fadeOut();
-       });
-       function formatDate(date) {
-           var d = new Date(date),
-               month = '' + (d.getMonth() + 1),
-               day = '' + d.getDate(),
-               year = d.getFullYear();
+    AddRow_TaxComponentOnEdit();
+    AddRow_TaxComponentEditOnClick();
+    AddRow_Bank();
+    AddRowBankDetail();
 
-           if (month.length < 2)
-               month = '0' + month;
-           if (day.length < 2)
-               day = '0' + day;
+    AddRow_BankOnEdit();
+    AddRowBankDetailOnEdit();
+    ClickCheckBoxTaxList();
+    var params = getUrlParameter('param');
+    var From = getUrlParameter('From');
+    
+    if (params == 'checkForApprove' && From == 'Tax') {
+        PaymentPage();
+        $('#overlay').fadeOut();
+        return false;
+    }
 
-           return [year, month, day].join('-');
-       }
+
+
+    var params = getUrlParameter('Param');
+    if (params) {
+        AddNewTax();
+    }
+    $('#overlay').fadeOut();
+});
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 function AllTaxVoucher() {
     $("#div_TaxList").show();
     $("#div_UnpaidTaxList").hide();
@@ -241,12 +248,12 @@ function AllNotReceivedTaxVoucher() {
     $("#btnPay").hide();
     $("#btnReceive").show();
     $("#div_NotReceivedTaxList").show();
-            
+
 
 }
 
 function AddRow_TaxComponent() {
-    
+
     var newid = 1;
     $.each($("#tblTaxRate tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -297,7 +304,7 @@ function AddRow_TaxComponent() {
 }
 function AddRow_TaxComponentOnClick() {
     $("#add_rowTaxComponent").on("click", function () {
-        
+
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -351,9 +358,8 @@ function AddRow_TaxComponentOnClick() {
         });
     })
 }
-
 function AddRow_TaxComponentOnEdit() {
-    
+
     var newid = 1;
     $.each($("#tblTaxRateOnEdit tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -404,7 +410,7 @@ function AddRow_TaxComponentOnEdit() {
 }
 function AddRow_TaxComponentEditOnClick() {
     $("#add_rowTaxComponentOnEdit").on("click", function () {
-        
+
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -458,9 +464,8 @@ function AddRow_TaxComponentEditOnClick() {
         });
     })
 }
-  
 function AddRow_Bank() {
-    
+
     var newid = 1;
     $.each($("#tab_BankDetail tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -511,7 +516,7 @@ function AddRow_Bank() {
 }
 function AddRowBankDetail() {
     $("#add_rowBankDetail").on("click", function () {
-        
+
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -565,9 +570,8 @@ function AddRowBankDetail() {
         });
     })
 }
-
 function AddRow_BankOnEdit() {
-    
+
     var newid = 1;
     $.each($("#tab_BankDetailOnEdit tr"), function () {
         if (parseInt($(this).data("id")) > newid) {
@@ -618,7 +622,7 @@ function AddRow_BankOnEdit() {
 }
 function AddRowBankDetailOnEdit() {
     $("#add_rowBankDetailOnEdit").on("click", function () {
-        
+
         // Dynamic Rows Code
 
         // Get max row id and set new id
@@ -662,8 +666,6 @@ function AddRowBankDetailOnEdit() {
                 }).appendTo($(tr));
             }
         });
-
-
         // add the new row
         $(tr).appendTo($('#tab_BankDetailOnEdit'));
 
@@ -678,7 +680,7 @@ function PaymentPage() {
     $("#btnDeleteTaxPayment").hide();
     $("#btnInActiveTaxPayment").hide();
     $("#TaxPaymentVoucher").show();
-            
+
 
 }
 function TaxPaymentPage() {
@@ -689,25 +691,19 @@ function TaxPaymentPage() {
 
     //$("#div_NotReceivedTaxList"), hide();
     $("#TaxPaymentVoucher").show();
-
-
 }
 function ClickCheckBoxTaxList() {
     var $PaymentTax = $("#btnTaxPayment").hide(),
    $cbs = $('input[type="checkbox"]').click(function () {
        $PaymentTax.toggle($cbs.is(":checked"));
-
    });
 }
-
 function ReceivePage() {
     $("#TaxList").hide();
     $("#btnEditTaxReceived").hide();
     $("#btnDeleteTaxReceived").hide();
     $("#btnInActiveTaxReceived").hide();
     $("#TaxReceiveVoucher").show();
-
-
 }
 function AddNewTax() {
     $("#TaxList").hide();
@@ -726,16 +722,11 @@ function show_confirmTaxPayment(message) {
 
             $("#div_TaxList").show();
             $("#div_UnpaidTaxList").hide();
-                    
-                    
-                   
         },
         executeNo: function () {
-
         }
     });
 }
-
 function show_confirmTaxPaymentOnEdit(message) {
     show_confirm_message({
         message: message,
@@ -750,17 +741,12 @@ function show_confirmTaxPaymentOnEdit(message) {
 
             $("#div_TaxList").show();
             $("#div_UnpaidTaxList").hide();
-
-
-
         },
         executeNo: function () {
 
         }
     });
 }
-
-      
 function show_confirmTaxReceive(message) {
     show_confirm_message({
         message: message,
@@ -779,7 +765,6 @@ function show_confirmTaxReceive(message) {
         }
     });
 }
-
 function show_confirmTaxReceiveOnEdit(message) {
     show_confirm_message({
         message: message,
@@ -798,7 +783,6 @@ function show_confirmTaxReceiveOnEdit(message) {
         }
     });
 }
-
 function show_confirmTaxRate(message) {
     show_confirm_message({
         message: message,
@@ -808,7 +792,6 @@ function show_confirmTaxRate(message) {
             // $("#div_NotReceivedTaxList").hide();
         },
         executeNo: function () {
-
         }
     });
 }
@@ -826,4 +809,3 @@ function show_confirmTaxRateOnEdit(message) {
     });
 }
 
-   

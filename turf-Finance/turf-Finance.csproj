@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,12 +99,26 @@
     <Content Include="Accounting.aspx" />
     <Content Include="Approvel.aspx" />
     <Content Include="assets\css\DataTable\buttons.dataTables.min.css" />
+    <Content Include="assets\css\DataTable\icon.css" />
     <Content Include="assets\css\fonts.css" />
     <Content Include="assets\css\bootstrap-datepicker.css" />
     <Content Include="assets\css\gijgo.min.css" />
+    <Content Include="assets\img\download.jpg" />
+    <Content Include="assets\img\finance Logo.png" />
+    <Content Include="assets\img\finance.png" />
+    <Content Include="assets\img\Financelogo2.png" />
     <Content Include="assets\img\loading-31.gif" />
     <Content Include="assets\js\bootstrap-datepicker.js" />
+    <Content Include="assets\js\DataTable\buttons.html5.min.js" />
+    <Content Include="assets\js\DataTable\buttons.print.min.js" />
+    <Content Include="assets\js\DataTable\buttons1.html5.min.js" />
+    <Content Include="assets\js\DataTable\dataTables.buttons.min.js" />
+    <Content Include="assets\js\DataTable\dataTables1.buttons.min.js" />
+    <Content Include="assets\js\DataTable\jszip.min.js" />
+    <Content Include="assets\js\DataTable\pdfmake.js" />
+    <Content Include="assets\js\DataTable\vfs_fonts.js" />
     <Content Include="assets\js\gijgo.min.js" />
+    <Content Include="assets\js\googleapis.js" />
     <Content Include="assets\js\sweetalert.min.js" />
     <Content Include="assets\locales\bootstrap-datepicker.bg.js" />
     <Content Include="assets\locales\bootstrap-datepicker.ca.js" />
@@ -142,7 +158,10 @@
     <Content Include="assets\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="assets\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Bank.aspx" />
+    <Content Include="DashBoard.aspx" />
     <Content Include="JournalEntry.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="assets\css\LoginCustomCSS.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -188,6 +207,9 @@
     <Content Include="assets\fonts\FontAwesome.otf" />
     <Content Include="assets\fonts\gijgo-material.woff" />
     <Content Include="assets\fonts\gijgo-material.ttf" />
+    <Content Include="assets\fonts\flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" />
+    <Content Include="assets\fonts\7Au_p_0qiz-adZnkOCr2z3wM.woff2" />
+    <None Include="Properties\PublishProfiles\turf_finance.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -249,13 +271,18 @@
     <Content Include="scripts\Custom\Bank.js" />
     <Content Include="scripts\Custom\Expense.js" />
     <Content Include="scripts\Custom\JournalEntry.js" />
+    <Content Include="scripts\Custom\Login.js" />
     <Content Include="scripts\Custom\MyScript.js" />
     <Content Include="scripts\Custom\PettyCash.js" />
     <Content Include="scripts\Custom\ProductAndServices.js" />
     <Content Include="scripts\Custom\Sale.js" />
     <Content Include="scripts\Custom\Tax.js" />
+    <Content Include="scripts\Custom\User.js" />
+    <Content Include="scripts\Dashboard.js" />
     <Content Include="scripts\ellipsis.js" />
     <Content Include="Tax.aspx" />
+    <Content Include="User.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +307,13 @@
     <Compile Include="Bank.aspx.designer.cs">
       <DependentUpon>Bank.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DashBoard.aspx.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard.aspx.designer.cs">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Expense.aspx.cs">
       <DependentUpon>Expense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -293,6 +327,13 @@
     </Compile>
     <Compile Include="JournalEntry.aspx.designer.cs">
       <DependentUpon>JournalEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -330,16 +371,34 @@
     <Compile Include="Tax.aspx.designer.cs">
       <DependentUpon>Tax.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\img\background\" />
     <Folder Include="assets\img\tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
