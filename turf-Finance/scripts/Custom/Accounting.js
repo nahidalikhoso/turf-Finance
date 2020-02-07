@@ -3,18 +3,6 @@
     setTimeout(function () {
         getPreviusThirtyDays(GatAccountData);
     },0)
-  
-    
- 
-
-    //setTimeout(function () {
-    //    $.when($.ajax(getPreviusThirtyDays())).then(function () {
-    //        GatAccountData();
-    //    });
-    //},50);
-  
-    
-    
     $("#tblAccountList tbody tr").find("td:eq(1)").attr('title', 'click me to view detail');
     $("#tblAccountList tbody tr").find("td:eq(1)").css({ cursor: 'pointer', color: 'blue', 'text-decoration': 'underline' });
     GetAccountType();
@@ -74,11 +62,9 @@
     if (params) {
         OpenAccountPage();
     }
-    
-    //$('#overlay').fadeOut();
 });
 
-function changeAccountType(ParentID,callback)
+function changeAccountType(ParentID)
     {
         $('#chkSubAccount').prop('checked', false);
         $("#ddlParentAccount").select2();
@@ -87,11 +73,8 @@ function changeAccountType(ParentID,callback)
         $("#ddlParentAccount").css({ 'cssText': 'background: #dddddd !important' });
         $("#ddlParentAccount ").find('option').remove()
         GetSubAccount(ParentID);
-    callback()
     }
-
 function GatAccountData() {
-    
     var parameter = "?StartDate=" + datePickStart.value + "&EndDate=" + datePickEnd.value;
     $.ajax({
         url: "http://localhost:20037/api/Accounting/GetAccountData" + parameter,
@@ -100,7 +83,6 @@ function GatAccountData() {
         success: function (ApiResponse) {
             if (ApiResponse) {
                 $('#overlay').fadeIn();
-                
                     $('#tblAccountList').DataTable().clear().destroy();
                 if (ApiResponse.includes("[{")) {
                     $('#tblAccountList tbody').html('');
@@ -110,14 +92,11 @@ function GatAccountData() {
                         $(tr).attr('account-id', response[i].ID);
                         $(tr).append('<td>' + response[i].AccountType + '</td><td onclick="check(this)">' + response[i].Name + '</td><td>' + response[i].Code + '</td><td>' + response[i].Description + '</td><td>' + response[i].Balance + '</td>');
                         $('#tblAccountList tbody').append(tr)
-
                     }
                     InitializeAccountDataTable();
                     $('#overlay').fadeOut();
-
                 }
                 else {
-                
                     InitializeAccountDataTable();
                     $('#overlay').fadeOut();
                 }
@@ -126,11 +105,6 @@ function GatAccountData() {
             }
             
         },
-       
-        //complete: function () {
-           
-           
-        //}
     })
   
 }
@@ -154,15 +128,15 @@ function check(name)
 
     GetAccountByID(AccountID)
 }
-function SaveUser() {
+function SaveAccount() {
     
     if (hdnUserID.value=='') 
-        SubmitUser("http://localhost:20037/api/Accounting/AddAccount");
+        SubmitAccount("http://localhost:20037/api/Accounting/AddAccount");
     else
-        SubmitUser("http://localhost:20037/api/Accounting/UpdateAccount");
+        SubmitAccount("http://localhost:20037/api/Accounting/UpdateAccount");
     
 }
-function SubmitUser(api_url) {
+function SubmitAccount(api_url) {
    var Data = JSON.parse( localStorage.getItem('UserData'));
     var  obj  ={};
     obj.ID = hdnUserID.value;
@@ -221,6 +195,7 @@ function SubmitUser(api_url) {
 
 }
 function GetAccountType() {
+    
     $.ajax({
         url: "http://localhost:20037/api/Accounting/GetAccountType",
         success: function (ApiResponse) {
@@ -228,10 +203,11 @@ function GetAccountType() {
             if (ApiResponse) {
                 var AccountType = JSON.parse(ApiResponse);
                 $('#ddlAccountType').append('<option value="0">Select</option>');
-                var Groups = AccountType.filter(x => x.IsParent == false);
+                var Groups = AccountType.filter(x => x.HasParent == false);
                 for (var i = 0; i < Groups.length; i++) {
+                    
                     $('#ddlAccountType').append('<optgroup label="' + Groups[i].Type + '" value="' + Groups[i].Value + '" class="form-control"></optgroup>');
-                    var Types = AccountType.filter(x => x.IsParent == true && x.ParentID == Groups[i].Value);
+                    var Types = AccountType.filter(x => x.HasParent == true && x.ParentID == Groups[i].Value);
                     for (var j = 0; j < Types.length; j++) {
                         $('optgroup[label="' + Groups[i].Type + '"]').append('<option value="' + Types[j].Value + '">' + Types[j].Type + '</option>')
                     }
@@ -339,10 +315,7 @@ function DisableAccountVoucher() {
 
 }
 function AccountBalance() {
-    
-   
     if ($('#txtBalance').val() != '') {
-        
         $("#AsOFDate").attr("disabled", false);
         $("#AsOFDate").css({ 'cssText': 'background: ' });
         $('.gj-icon').show();
@@ -444,7 +417,7 @@ function show_confirmSave(message) {
         },
     }).then((ifyes) => {
         if (ifyes) {
-            SaveUser();
+            SaveAccount();
         }
     });
 }
@@ -545,7 +518,6 @@ function InitializeAccountDataTable() {
         "order": [[3, "desc"]],
         "pagingType": "full_numbers",
     });
-    
 }
 function GetAccountByID(AccountID) {
     $.ajax({
@@ -557,7 +529,16 @@ function GetAccountByID(AccountID) {
             if (ApiResponse) {
                 
                 var Data = $.parseJSON(ApiResponse);
-                $("#ddlAccountType").val(Data[0].AccountTypeID).attr('selected', 'selected');
+                if (Data[0].AccountTypeID != null) {
+                    $("#ddlAccountType").val(Data[0].AccountTypeID).attr('selected', 'selected');
+                    changeAccountType(Data[0].AccountTypeID, function () {
+                        if (Data[0].IsSubAccount) {
+                            $('#chkSubAccount').prop('checked', true);
+                            $("#ddlParentAccount").val(Data[0].ParentAccountID).attr('selected', 'selected');
+                        }
+                    });
+                }
+                    
                 //ddlAccountType.va = ApiResponse[0].AccountTypeID;
                 txtAccountCode.value = Data[0].Code;
                 txtAccountName.value = Data[0].Name;
@@ -570,12 +551,7 @@ function GetAccountByID(AccountID) {
                 AsOFDate.value = DateFormat(Data[0].AsOf);
                 DisableAccountVoucher();
                 
-                changeAccountType(Data[0].AccountTypeID, function () {
-                    if (Data[0].IsSubAccount) {
-                        $('#chkSubAccount').prop('checked', true);
-                        $("#ddlParentAccount").val(Data[0].ParentAccountID).attr('selected', 'selected');
-                    }
-                })
+               
                 //$.when($.ajax(changeAccountType(Data[0].AccountTypeID))).then(function () {
                 //    if (Data[0].IsSubAccount) {
                 //                $('#chkSubAccount').prop('checked', true);

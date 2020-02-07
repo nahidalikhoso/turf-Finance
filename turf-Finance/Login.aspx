@@ -38,7 +38,8 @@
     <script>
         $(document).ready(function () {
             localStorage.clear('URL');
-        })
+          
+        });
         function UserAuthentication() {
             var parameters = "?username=" + txtUserName.value + "&password=" + txtPassword.value;
 
@@ -47,7 +48,8 @@
                 type: "POST",
                 success: function (APIResponse) {
                     
-                    if (APIResponse) {
+                    if (APIResponse.includes("[{")) {
+                        window.location.href = "DashBoard.aspx";
                         alldata = JSON.parse(APIResponse);
                         table1 =new Array() ;
                         table2 = new Array();
@@ -72,7 +74,7 @@
                         });
                         localStorage.setItem('data', JSON.stringify(table1));
                         localStorage.setItem('UserData', JSON.stringify(table2));
-                        window.location.href = "DashBoard.aspx"; 
+                        
                     }
                     else
                         showMessage('Invalid User Name Or Password', 'warning', '');
@@ -81,6 +83,21 @@
                 }
 
             })
+        }
+       
+
+        function GetTimeLate() {
+            
+            setTimeout(function () {
+                alert('doneLate')
+            }, 3000)
+         return   resolve(1);
+        }
+        function GetTimeFast() {
+            
+            setTimeout(function () {
+                alert('doneFast')
+            },500)
         }
     </script>
     <title></title>

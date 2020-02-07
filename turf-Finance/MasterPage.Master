@@ -218,6 +218,16 @@
   
     <script>
         $(document).ready(function () {
+            
+            list = localStorage.getItem('data');
+            if (list==null) {
+                localStorage.clear('data');
+                localStorage.clear('URL');
+                window.location.href = "Login.aspx";
+            }
+            else {
+                fillMenue();
+            }
             DatePickerExample();
             
             var UserData = JSON.parse(localStorage.getItem('UserData'))
@@ -225,10 +235,6 @@
             $('#UserName').text(UserData[0].UserName);
             $('#lblEmail').text(UserData[0].Email);
             $('#lblRole').text(UserData[0].Role);
-            
-            fillMenue();
-            
-            list = localStorage.getItem('data');
             var data = JSON.parse(list);
             var URL1 = "";
             var URL2 = localStorage.getItem('URL');
@@ -247,7 +253,12 @@
                 check = true
             }
             if (check == false)
+            {
+                localStorage.clear('data');
+                localStorage.clear('URL');
                 window.location.href = "Login.aspx";
+            }
+                
             
             $(".datepicker").keypress(function (evt) {
                 //Deterime where our character code is coming from within the event 
@@ -259,9 +270,11 @@
             });
         });
         function logOut() {
-            window.location.href = "Login.aspx";
             localStorage.clear('UserData');
             localStorage.clear('data');
+            
+            window.location.href = "Login.aspx";
+         
         }
         function fillMenue() {
             
@@ -270,7 +283,12 @@
                 $('#lstMenu').append(Menu);
             }
             else {
+
                 list = localStorage.getItem('data');
+                if (list ==null) {
+                    window.location.href = "Login.aspx";
+                }
+                else{
                 var data = JSON.parse(list);
                 var i = 0;
                 var li = "";
@@ -282,7 +300,7 @@
                 }
                 var Menue = localStorage.setItem('ListMenu', li);
                 $('#lstMenu').append(li);
-
+                }
             }
 
         }

@@ -4,7 +4,6 @@
     <link href="assets/Custom/StyleSheet.css" rel="stylesheet" />
     <script src="scripts/Custom/PettyCash.js"></script>
     <style>
-        
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -28,7 +27,7 @@
                     <div class="container-fluid">
                         <div class="row" style="margin-top: 23px">
                             <div class="col-md-12">
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <div class="col-md-12">
                                         <div class="col-md-2 text-right PaddingClass">
                                             <label class="Label">Start Date:</label>
@@ -43,16 +42,22 @@
                                         </div>
                                         <div class="col-md-3 PaddingClass">
                                             <div class="input-wrapper">
-                                                <input type="text" placeholder="enter End Date" autocomplete="off" class="form-control border-input datepicker" id="datePickEnd" />
-                                               
+                                                <input type="text" onchange="EndDate_OnChange();" placeholder="enter End Date" autocomplete="off" class="form-control border-input datepicker" id="datePickEnd" />
+
+                                            </div>
+                                        </div>
+                                         <div class="col-md-2 PaddingClass">
+                                            <div class="input-wrapper">
+                                                <button type="button" id="btnFetch" onclick=" GetPettyCashData();" class="btn btn-fill btn-success" >Fetch</button>
+
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="col-md-4 text-right">
-                                
-                                    <button type="button" id="btnAddNewInvoice" class="btn btn-success btn-fill" onclick="openPettyCashVoucher();">Add</button>
+                                <div class="col-md-3 text-right">
+
+                                    <button type="button" id="btnAddNewPettyCash" class="btn btn-success btn-fill" onclick="openPettyCashVoucher();">Add</button>
                                 </div>
 
                             </div>
@@ -68,40 +73,11 @@
                                             <th>Account </th>
                                             <th>Amount</th>
                                             <th>Memo</th>
-                                            <th>Class</th>
-                                            <th>Project</th>
+                                            <th class="headingClass">Class</th>
+                                            <th class="headingProject">Project</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Voucher No 1</td>
-                                            <td>31 Aug 2019</td>
-                                            <td>Tea</td>
-                                            <td>150</td>
-                                            <td>Take A tea In Office</td>
-                                            <td>Class 1</td>
-                                            <td>Project A</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Voucher No 2</td>
-                                            <td>01 Sep 2019</td>
-                                            <td>Lunch</td>
-                                            <td>1,000.00</td>
-                                            <td>Lunch in Office</td>
-                                            <td>Class 2</td>
-                                            <td>Project A</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Voucher No 3</td>
-                                            <td>02 Sep 2019</td>
-                                            <td>Tea</td>
-                                            <td>300</td>
-                                            <td>Take A tea In Office</td>
-                                            <td>Class 1</td>
-                                            <td>Project A</td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -115,7 +91,6 @@
     <div id="PettyCashVoucher" class="wrapper">
         <div class="content">
             <div class="container-fluid">
-
                 <div class="header">
                     <div class="row">
                         <div class="col-md-8">
@@ -130,7 +105,9 @@
                 <div>
                     <hr />
                 </div>
-                <div class="row">
+              
+              <div class="row">
+                    <input type="hidden" id="hdnPettyCashID" value="" />
                     <div class="col-md-12">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -143,59 +120,62 @@
                                 <label>Voucher Date </label>
                                 <div class="input-wrapper">
                                     <input type="text" placeholder="Enter Voucher Date" id="VoucherDate" class="form-control border-input datepicker  " />
-                                    
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
                 <div class="row">
                     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-                    <div class="container" style="width: 100%;">
+                    <div class="container" style="width:100%;">
                         <div class="row clearfix">
                             <div class="col-md-12 table-responsive">
                                 <table class="table display table-bordered table-hover table-sortable" id="tab_PettyCash">
                                     <thead>
                                         <tr>
-                                            <th>Account
+                                            <th class="headingAccount">Account
                                             </th>
-                                            <th style="width:20%">Amount
+                                            <th style="width: 20%">Amount
                                             </th>
-                                            <th >Memo
+                                            <th>Memo
                                             </th>
-                                            <th>Class
+                                            <th class="headingClass">Class
                                             </th>
-                                            <th>Project
+                                            <th class="headingProject">Project
                                             </th>
-                                            <th style="width:10%">Remove
+                                            <th style="width: 10%">Remove
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="row" id="div_totalAmount">
-                           
-                                <div class="col-md-3 text-right"><label>Total:</label></div>
-                                <div class="col-md-2 text-center"><label id="lblTotalAmount">0.00</label></div>
-                        
+
+                            <div class="col-md-3 text-right">
+                                <label>Total:</label>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label id="lblTotalAmount">0.00</label>
+                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-5">
                                     <a id="add_row" class="btn btn-primary  btn-fill  btn-sm btn-wd ">Add a new Line</a>
-                                <button type="button" id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="show_confirm_RemoveAllRowsFromPettyCash()">Clear All Lines</button>
+                                    <button type="button" id="ClearAll" class="btn btn-primary  btn-fill  btn-sm btn-wd " onclick="show_confirm_RemoveAllRowsFromPettyCash()">Clear All Lines</button>
                                 </div>
                                 <div class="col-md-7 text-right">
-                                              <button type="button" onclick="EnablePettyCashVoucher();" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
-                            <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
-                            <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
+                                    <button type="button" onclick="EnablePettyCashVoucher();" id="btnEdit" class="btn btn-info btn-fill btn-sm btn-wd ">Edit</button>
+                                    <button type="button" id="btnDelete" class="btn btn-info btn-fill btn-sm btn-wd ">Delete</button>
+                                    <button type="button" id="btnSave" class="btn btn-info btn-fill btn-sm btn-wd ">Save</button>
                                 </div>
-                                
-                       
+
+
                             </div>
                         </div>
                     </div>
@@ -203,13 +183,13 @@
                 <div class="row">
                     <div class="container-fluid" style="padding-top: 3%;">
                         <div class="col-md-12 text-right">
-                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+        
     <div id="AddTaxModel" class="modal fade bd-example-modal-sm" role="dialog">
         <div class="modal-dialog">
 
@@ -223,6 +203,27 @@
 
                     <div class="form-group">
                         <label>Tax </label>
+                        <input type="text" style="width: 40%;" class="form-control border-input" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="AddProject" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Project</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name </label>
                         <input type="text" style="width: 40%;" class="form-control border-input" />
                     </div>
                 </div>
@@ -249,10 +250,88 @@
             </div>
         </div>
     </div>
-    
-  <%--  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <div id="AddAccount" class="modal  modal-sm "  role="dialog">
+        <div class="modal-dialog modal-sm ">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header  ">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Account</h4>
+                </div>
+                <div class="modal-body ">
+                     <div class="row">
+                        <div class="col-md-12">
+                            <label>Code </label>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 2%;">
+                        <div class="col-md-12">
+                            <input type="text" oninput="AlphaNumericOnly(this.id);" id="txtAccountCode" class="form-control border-input" />
+                        </div>
+                    </div>
+                     <div class="row" style="padding-top: 2%;">
+                        <div class="col-md-12">
+                            <label>Name </label>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 2%;">
+                        <div class="col-md-12">
+                            <input type="text" oninput="AlphaNumericOnly(this.id);"  id="txtAccountName" class="form-control border-input" />
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 9%;">
+                        <div class=" col-md-6 ">
+                            <a href="#" onclick="show_confirm_AddAccountDetail();" style="font-weight: bold;">+ Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" id="btnSaveAccount" onclick="AddAccount();" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="AddClass" class="modal  modal-sm" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header modal-sm">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Class</h4>
+                </div>
+                <div class="modal-body modal-sm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Name :</label>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 2%;">
+                        <div class="col-md-12">
+                            <input type="text" id="txtClassName" class="form-control border-input" />
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 2%;padding-bottom:2%">
+                        <div class="col-md-12">
+                            <span >
+                                <input type="checkbox" onchange="OnchangeSubClass();" id="chkSubClass" /><label for="chkSubClass">IsSubClass</label></span>
+                        </div>
+                        
+                    </div>
+                    <div class="row" style="padding-top: 2%;">
+                        <div class="col-md-12">
+                            <select id="ddlSubClass" class="form-control selectSubClass "></select>
+                        </div>
+                    </div>
 
-   --%>
-   
+                </div>
+                <div class="modal-footer modal-sm" style="padding-top:2%;">
+                    <button type="button" id="btnSaveClass" onclick="AddClass();" class="btn btn-default" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </asp:Content>
